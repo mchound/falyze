@@ -1,0 +1,17 @@
+﻿@model Falyze.Web.Models.Filter
+
+<div class="filter row mb" data-lean-dom-connector="filter" data-filter="@Model.FilterName">
+    <div class="col-md-24">
+        <div class="clearfix mb" data-am-filter>
+            <div data-lean-component="filter-title" data-lean-props='{"title": "@Model.Title", "filter": "@Model.FilterName"}'></div>
+            <div class="row content" data-lean-dom-connector="filterViewState" data-filter="@Model.FilterName">
+                <div class="col-md-12 team">
+                    <div data-lean-component="@Model.FilterName" data-lean-props='{"team": "team1", "filter": "@Model.FilterName", "notifyElementSelector": ".content[data-filter=\"@Model.FilterName\"]"}' class="filter"></div>
+                </div>
+                <div class="col-md-12 team">
+                    <div data-lean-component="@Model.FilterName" data-lean-props='{"team": "team2", "filter": "@Model.FilterName", "notifyElementSelector": ".content[data-filter=\"@Model.FilterName\"]"}' class="filter"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

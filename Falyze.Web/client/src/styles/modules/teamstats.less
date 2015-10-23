@@ -1,0 +1,84 @@
+﻿[data-am-teamstats] {
+    height: 300px;
+    background-color: #fff;
+    display: table;
+    width: 100%;
+    
+
+    .team-selector {
+        padding: 15px 7px 0 8px;
+        position: relative;
+    }
+    
+    .team-label{
+        margin-bottom: 15px;
+    }
+
+    .right .team-label{
+        float: right;
+    }
+
+    .cols{
+        padding-left: 7px;
+        padding-right: 8px;
+        &:after{
+            display: table;
+            clear: both;
+            content: " ";
+        }
+    }
+
+    .left{
+        float: left;
+    }
+
+    .right{
+        float: right;
+    }
+
+    .col {
+        width: 50%;
+        padding-left: 8px;
+        padding-right: 7px;
+    }
+
+    .left [data-am-select] {
+        float: right;
+    }
+
+    [data-am-select] {
+        max-width: 250px;
+        transition: opacity 250ms;
+
+        &.selected {
+            opacity: 0;
+        }
+    }
+
+    [data-am-matchtable]{
+        width: 100%;
+        cursor: pointer;
+    }
+
+    [data-am-matchlist]{
+        width: 100%;
+        cursor: pointer;
+    }
+
+    .table-bar{
+        padding: 10px;
+        background-color: #f1f1f1;
+        border: 1px solid #eee;
+        position: relative;
+        cursor: pointer;
+        transition: background-color 250ms;
+        &:hover{
+            background-color: #f5f5f5;
+        }
+        [class*="icon-"]{
+            position: absolute;
+            right: 10px;
+        }
+    }
+}
+

@@ -1,0 +1,78 @@
+﻿[data-am-select] {
+    display: inline-block;
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+
+    .select {
+        padding: 15px;
+        border: 1px solid @clr-border;
+        background-color: #fff;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        &:after{
+            width: 24px;
+            height: 24px;
+            content: "";
+            display: block;
+            position: absolute;
+            right: 5px;
+            top: 15px;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAA1UlEQVRIS+3SMWpCQRSF4e9FTJsyrUX2YGNjYWGTHbgHwcJkJTapQsAUQrBQyBZcQcAUAQtBcAlJZCCPaNA3oyBp3tTnnn/mv5M588nO3K8ERA2Xik5W1MEU62jDb6COb8y2Zw7t4BL3GGCVAGmghqe/2aIlV3GHBywLIE1c43lfJvaLKj+QRyz2FLRwhdGhC8QAYe4CfQzxsVXURlA5LlKYAsghPbzgHbf4xCS2n1RA6AnZLr7whtdYeT6UksszAXKDeerQMS9I7dzJlYCotlLR/yvaAK8IGBnVmkD0AAAAAElFTkSuQmCC');
+            background-repeat: no-repeat;
+        }
+    }
+
+    .items-container {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        max-height: 200px;
+        overflow-y: auto;
+        z-index: 2;
+        border: 1px solid @clr-border;
+        border-top: none;
+        background-color: #fff;
+    }
+
+    .items {
+        list-style: none;
+        margin: 0;
+        padding: 5px 10px;
+    }
+
+    .item {
+        padding: 5px;
+
+        &.selected {
+            color: red;
+        }
+    }
+
+    .close-area{
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+}
+
+[data-am-select~="disabled"] {
+    .select {
+        background-color: #f5f5f5;
+        color: #666;
+        cursor: default;
+    }
+}
+
+[data-am-select~="open"]{
+    .items-container{
+        z-index: 100;
+    }
+    .close-area{
+        z-index: 99;
+    }
+}

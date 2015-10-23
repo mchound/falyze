@@ -1,0 +1,50 @@
+﻿[data-am-button]{
+    .buttonize();
+    color: #fff;
+}
+
+.btn-hover(@clr){
+    background-color: lighten(@clr, 5%);
+    transition: background-color 250ms;
+    &:hover{
+        background-color: @clr;
+    }
+}
+
+[data-am-button~="icon"]{
+    background-color: transparent;
+
+    &:hover{
+        border-radius: 50%;
+    }
+}
+
+[data-am-button~="on-light"]{
+    color: @clr-text;
+    &:hover{
+        color: @clr-text;
+        background-color: #f1f1f1;
+    }
+}
+
+[data-am-button~="thin"]{
+    padding: 5px;
+}
+
+[data-am-button~="turquoise"]{
+    .btn-hover(@clr-turquoise);
+}
+
+[data-am-button~="green"]{
+    .btn-hover(@clr-green);
+}
+
+[data-am-button~="stretch"]{
+    width: 100%;
+}
+
+[data-am-button][disabled]{
+    background-color: @clr-disabled;
+    color: @clr-disabled-text;
+    cursor: default;
+}

@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0DB1C077-EBEC-40DD-BE66-9F9DCEFF3B3F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Falyze.Web</RootNamespace>
+    <AssemblyName>Falyze.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Api\CountryController.cs" />
+    <Compile Include="Api\StatsController.cs" />
+    <Compile Include="Api\TeamController.cs" />
+    <Compile Include="Api\MatchController.cs" />
+    <Compile Include="Api\SeasonController.cs" />
+    <Compile Include="Api\LeagueController.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Extensions\TeamExtensions.cs" />
+    <Compile Include="Helpers\ModelBinders\EnumerableModelBinder.cs" />
+    <Compile Include="Models\ViewModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="client\dist\application.css" />
+    <Content Include="client\dist\application.js" />
+    <Content Include="client\dist\font\fontello.svg" />
+    <Content Include="client\src\js\actions\Actions.js" />
+    <Content Include="client\src\js\application.js" />
+    <Content Include="client\src\js\domConnectors\connectors.js" />
+    <Content Include="client\src\js\lean\action.js" />
+    <Content Include="client\src\js\lean\connector.js" />
+    <Content Include="client\src\js\lean\controller.js" />
+    <Content Include="client\src\js\lean\dom\dom.js" />
+    <Content Include="client\src\js\lean\Injector.js" />
+    <Content Include="client\src\js\lean\lean.js" />
+    <Content Include="client\src\js\lean\Store\ajax.js" />
+    <Content Include="client\src\js\lean\Store\common.js" />
+    <Content Include="client\src\js\lean\Store\memStore.js" />
+    <Content Include="client\src\js\lean\Store\serverStore.js" />
+    <Content Include="client\src\js\lean\Store\store.js" />
+    <Content Include="client\src\js\lean\viewHelper.js" />
+    <Content Include="client\src\js\stores\FilterStore.js" />
+    <Content Include="client\src\js\stores\TeamStatStore.js" />
+    <Content Include="client\src\js\stores\TeamStore.js" />
+    <Content Include="client\src\js\stores\MatchStore.js" />
+    <Content Include="client\src\js\stores\PrerequisiteStore.js" />
+    <Content Include="client\src\js\stores\SeasonStore.js" />
+    <Content Include="client\src\js\stores\LeagueStore.js" />
+    <Content Include="client\src\js\stores\CountryStore.js" />
+    <Content Include="client\dist\font\fontello.eot" />
+    <Content Include="client\dist\font\fontello.ttf" />
+    <Content Include="client\dist\font\fontello.woff" />
+    <Content Include="client\src\js\utils\Filter.js" />
+    <Content Include="client\src\js\utils\Utils.js" />
+    <Content Include="client\src\styles\icon-font.less" />
+    <Content Include="client\src\js\components\Filters\Title.jsx" />
+    <Content Include="client\src\js\components\Filters\Activator.jsx" />
+    <Content Include="client\src\js\components\Filters\Filter.jsx" />
+    <Content Include="client\src\js\components\Filters\TeamFilter.jsx" />
+    <Content Include="client\src\js\components\Filters\Confirm.jsx" />
+    <Content Include="client\src\js\components\Filters\Add.jsx" />
+    <Content Include="client\src\js\components\Stats\Team\TeamSelector.jsx" />
+    <Content Include="client\src\js\components\Stats\Table\Table.jsx" />
+    <Content Include="client\src\js\components\Stats\Team\TeamStat.jsx" />
+    <Content Include="client\src\js\components\Stats\Team\MatchList.jsx" />
+    <None Include="client\src\styles\modules\box.less" />
+    <None Include="client\src\styles\modules\matchtable.less" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\Filters\_Filter.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Falyze.Cache\Falyze.Cache.csproj">
+      <Project>{6bdbca78-b293-4911-881f-a72dec3dabe9}</Project>
+      <Name>Falyze.Cache</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Falyze.Data\Falyze.Data.csproj">
+      <Project>{e0152376-8486-4f0b-91cc-fdf1f516ac5c}</Project>
+      <Name>Falyze.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Falyze.Statistics\Falyze.Statistics.csproj">
+      <Project>{f2c69dce-e1c4-4642-a097-9907f9c7c31e}</Project>
+      <Name>Falyze.Statistics</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <Content Include="package.json" />
+    <Content Include="client\src\js\components\common\Spinner\Spinner.jsx" />
+    <Content Include="client\src\styles\application.less" />
+    <Content Include="client\src\styles\modules\splash.less" />
+    <Content Include="client\src\styles\utilities\utilities.less" />
+    <Content Include="client\src\js\components\common\Select\Select.jsx" />
+    <Content Include="client\src\js\components\common\Select\SelectItem.jsx" />
+    <Content Include="client\src\js\components\Prerequisites\Country.jsx" />
+    <Content Include="client\src\js\components\Prerequisites\League.jsx" />
+    <Content Include="client\src\styles\modules\select.less" />
+    <Content Include="client\src\styles\import.less" />
+    <Content Include="client\src\js\components\Prerequisites\Season.jsx" />
+    <Content Include="client\src\js\components\Prerequisites\Confirm.jsx" />
+    <Content Include="client\src\js\components\Match\Count.jsx" />
+    <Content Include="client\src\js\components\Filters\RangeFilter.jsx" />
+    <Content Include="client\src\js\components\common\Range\Range.jsx" />
+    <Content Include="client\src\styles\modules\range.less" />
+    <Content Include="client\src\styles\modules\filter.less" />
+    <Content Include="client\src\styles\modules\shout.less" />
+    <Content Include="client\src\styles\modules\button.less" />
+    <Content Include="client\src\styles\modules\dashboard.less" />
+    <Content Include="client\src\styles\modules\filtermenu.less" />
+    <Content Include="client\src\styles\modules\filterlist.less" />
+    <Content Include="client\src\styles\reset\table.less" />
+    <Content Include="client\src\styles\modules\matchlist.less" />
+    <None Include="client\src\styles\modules\spinner.less" />
+    <Content Include="client\src\styles\settings.less" />
+    <Content Include="client\src\styles\utilities\grid.less" />
+    <Content Include="client\src\styles\modules\teamstats.less" />
+    <Content Include="client\src\styles\utilities\mixins.less" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51790</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:51790/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

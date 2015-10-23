@@ -1,0 +1,33 @@
+{
+  "name": "Better",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch-css": "onchange client/src/styles/**/*.less -v -- npm run build-css",
+    "watch-js": "watchify -t babelify client/src/js/application.js -d -o client/dist/application.js -v",
+    "build-css": "lessc client/src/styles/import.less client/dist/application.css",
+    "build:dev": "browserify -t babelify client/src/js/application.js > client/dist/application.js",
+    "build:prod": "browserify -t babelify -t browserify-shim client/src/js/application.js | uglifyjs > client/dist/application.min.js -c -m",
+    "watch": "parallelshell \"npm run watch-js\" \"npm run watch-css\""
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babelify": "^6.3.0",
+    "browserify": "^11.2.0",
+    "browserify-shim": "^3.8.10",
+    "less": "^2.5.1",
+    "lodash": "^3.10.1",
+    "lodash.assign": "^3.2.0",
+    "onchange": "^2.0.0",
+    "parallelshell": "^2.0.0",
+    "react": "^0.13.3",
+    "reactify": "^1.1.1",
+    "uglify-js": "^2.4.24",
+    "watchify": "^3.4.0"
+  },
+  "browserify-shim": {
+    "react": "global:React"
+  }
+}

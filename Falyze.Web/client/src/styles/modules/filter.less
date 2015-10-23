@@ -1,0 +1,78 @@
+﻿[data-am-filter] {
+
+    @clr-title-bg: #4d4d4d;
+
+    background-color: #fff;
+
+    .title {
+        background-color: @clr-title-bg;
+        color: #eee;
+        padding: 15px;
+
+        &:after {
+            display: table;
+            content: " ";
+            clear: both;
+        }
+
+        &.minimized .border {
+            margin: 0 10px;
+            display: none;
+        }
+    }
+
+    .header {
+        float: left;
+        line-height: 28px;
+    }
+
+    .tools {
+        float: right;
+    }
+
+    .border {
+        margin: 0 15px 15px;
+        border: none;
+        border-bottom: 1px solid #eee;
+        height: 1px;
+        display: block;
+        clear: both;
+    }
+
+    .content {
+        max-height: 100px;
+        transition: max-height 200ms, padding 200ms;
+        overflow: hidden;
+
+        &[data-select-status="open"] {
+            overflow: visible;
+        }
+
+        &.minimized {
+            max-height: 0;
+        }
+    }
+
+    .filter {
+        padding: 15px;
+    }
+
+    .team:first-child {
+        border-right: 1px solid #ccc;
+    }
+
+    [class*="col-"] {
+        min-height: 0;
+    }
+}
+
+[data-am-filter] [data-am-select] {
+    .select,
+    .items-container {
+        border-color: #eee;
+    }
+}
+
+[data-am-filter] [data-am-button~="icon"] {
+    color: #eee;
+}

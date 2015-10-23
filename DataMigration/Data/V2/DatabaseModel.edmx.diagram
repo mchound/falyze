@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b3277d5e1aac42b28ae008ed4ec1171b" Name="Diagram1">
+        <EntityTypeShape EntityType="Better.v2Model.Country" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Better.v2Model.League" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Better.v2Model.Match" Width="1.5" PointX="5.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Better.v2Model.Season" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Better.v2Model.Team" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <AssociationConnector Association="Better.v2Model.FK_Leagues_Countries" ManuallyRouted="false" />
+        <AssociationConnector Association="Better.v2Model.FK_Matches_Countries" ManuallyRouted="false" />
+        <AssociationConnector Association="Better.v2Model.FK_Seasons_Countries" ManuallyRouted="false" />
+        <AssociationConnector Association="Better.v2Model.FK_Teams_Countries" ManuallyRouted="false" />
+        <AssociationConnector Association="Better.v2Model.FK_Matches_Leagues" ManuallyRouted="false" />
+        <AssociationConnector Association="Better.v2Model.FK_Matches_Seasons" ManuallyRouted="false" />
+        <AssociationConnector Association="Better.v2Model.FK_Matches_Teams" ManuallyRouted="false" />
+        <AssociationConnector Association="Better.v2Model.FK_Matches_Teams1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
