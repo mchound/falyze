@@ -19,12 +19,17 @@ Lean.inject({
     'drawsFilter': require('./components/Filters/RangeFilter.jsx'),
     'lossesFilter': require('./components/Filters/RangeFilter.jsx'),
     'roundsFilter': require('./components/Filters/RangeFilter.jsx'),
+    'positionFilter': require('./components/Filters/RangeFilter.jsx'),
+    'goalsForFilter': require('./components/Filters/RangeFilter.jsx'),
+    'goalsAgainstFilter': require('./components/Filters/RangeFilter.jsx'),
+    'goalDiffFilter': require('./components/Filters/RangeFilter.jsx'),
     'filter-title': require('./components/Filters/Title.jsx'),
     'filter-activator': require('./components/Filters/Activator.jsx'),
     'filter-confirm': require('./components/Filters/Confirm.jsx'),
     'filter-add': require('./components/Filters/Add.jsx'),
     'team-selector': require('./components/Stats/Team/TeamSelector.jsx'),
-    'team-stat': require('./components/Stats/Team/TeamStat.jsx')
+    'team-stat': require('./components/Stats/Team/TeamStat.jsx'),
+    'filter-populate': require('./components/Filters/Populator.jsx')
 });
 
 var resourceCount = 0,

@@ -180,6 +180,7 @@
     <Content Include="client\src\js\components\Stats\Table\Table.jsx" />
     <Content Include="client\src\js\components\Stats\Team\TeamStat.jsx" />
     <Content Include="client\src\js\components\Stats\Team\MatchList.jsx" />
+    <Content Include="client\src\js\components\Filters\Populator.jsx" />
     <None Include="client\src\styles\modules\box.less" />
     <None Include="client\src\styles\modules\matchtable.less" />
     <Content Include="favicon.ico" />

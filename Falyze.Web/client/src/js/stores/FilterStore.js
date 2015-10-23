@@ -27,14 +27,15 @@ var FilterStore = Lean.createStore({
         store.silent.add('filters', { });
         this.actOn(Actions.Filter.update);
         this.actOn(Actions.Filter.updateTeam);
+        this.actOn(Actions.Filter.updateManyTeam);
     },
     onUpdate: function (store, payload) {
         var current = store.get('filters');
         var currentFilter = getOrCreateFilter(current, payload.name);
-        if (payload.configuration.order !== undefined) {
+        if (!!payload.configuration && payload.configuration.order !== undefined) {
             Utils.Filter.changeOrder(FilterStore, payload.name, payload.configuration.order);
         }
-        if (!payload.configuration.visible && payload.configuration.visible !== undefined) {
+        if (!!payload.configuration && !payload.configuration.visible && payload.configuration.visible !== undefined) {
             Utils.Filter.moveToLast(FilterStore, payload.name);
         }
         currentFilter = __assign(currentFilter, payload.configuration);
@@ -45,6 +46,14 @@ var FilterStore = Lean.createStore({
         var current = store.get('filters');
         var currentFilter = getOrCreateFilter(current, payload.filter.name);
         currentFilter[payload.team] = __assign(currentFilter[payload.team], payload.filter.configuration);
+        store.update('filters', current);
+    },
+    onUpdateManyTeam: function (store, payload) {
+        var current = store.get('filters');
+        for (var filter in payload) {
+            current[filter].team1 = payload[filter].team1;
+            current[filter].team2 = payload[filter].team2;
+        }
         store.update('filters', current);
     }
 });

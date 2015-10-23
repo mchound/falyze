@@ -129,23 +129,21 @@ namespace Falyze.Statistics
         /// Get matches for a specific team.
         /// </summary>
         /// <param name="teamId">Team Id</param>
-        /// <param name="seasonId">Season Id. Specify -1 or leave season empty for latest season</param>
+        /// <param name="seasonId">Season Id. Specify -1 or leave season empty for 38 latest matches</param>
         /// <returns></returns>
         public IEnumerable<Match> GetMatchesForTeam(int teamId, int seasonId = -1)
         {
             IEnumerable<Match> matches;
             if(seasonId == -1)
             {
-                Match lastMatch = this.GetLastMatch(teamId);
-                League league = this.GetLeagues().First(l => l.Id == lastMatch.LeagueId);
-                Season season = this.GetSeasons().First(s => s.Id == lastMatch.SeasonId);
-                matches = this.GetMatches(season.Id, league.Id); ;
+                Team team = this.GetTeams().First(t => t.Id == teamId);
+                matches = this.GetMatchesForCountry(team.CountryId);
             }
             else
             {
                 matches = this.GetMatches(new int[] { seasonId }, this.GetLeagues().Select(l => l.Id));
             }
-            return matches.Where(m => m.HomeTeamId == teamId || m.AwayTeamId == teamId);
+            return matches.Where(m => m.HomeTeamId == teamId || m.AwayTeamId == teamId).OrderByDescending(m => m.Date).Take(50);
         }
 
         private Match GetLastMatch(int teamId)

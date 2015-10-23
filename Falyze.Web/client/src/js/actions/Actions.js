@@ -2,6 +2,6 @@
 
 module.exports = {
     Prerequisites: Lean.createAction(['changeCountry', 'changeLeague', 'changeSeason', 'confirm']),
-    Filter: Lean.createAction(['update', 'updateTeam']),
+    Filter: Lean.createAction(['update', 'updateTeam', 'updateManyTeam']),
     TeamStat: Lean.createAction(['update'])
 };

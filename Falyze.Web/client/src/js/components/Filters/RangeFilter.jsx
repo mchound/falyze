@@ -11,20 +11,8 @@ var React = require('react'),
 
 module.exports = Lean.createController({
     stores: [FilterStore, MatchStore],
-    componentWillMount: function(){
-        //Actions.Filter.update.dispatch({
-        //    team: this.props.team,
-        //    filter: {
-        //        name: this.props.filter,
-        //        configuration: {
-        //            active: true,
-        //            maximized: true
-        //        }
-        //    }
-        //});
-    },
     onChange: function(val){
-        Actions.Filter.update.dispatch({
+        Actions.Filter.updateTeam.dispatch({
             team: this.props.team,
             filter: {
                 name: this.props.filter,
@@ -35,16 +23,22 @@ module.exports = Lean.createController({
             }
         });
     },
+    onFilterUpdate: function(){
+        if (!!this.refs.range && !!this.state.store.filter.filters[this.props.filter]) {
+            var team = this.state.store.filter.filters[this.props.filter][this.props.team];
+            this.refs.range.set(team.min, team.max);
+        }
+    },
     shouldRender: function(state){
         return !!state.store.match.count;
     },
-    action: function(state, props){
+    action: function (state, props) {
         
     },
     view: function (model, state, props) {
         return (
             <div>
-                <Range min={0} max={500} onChange={this.onChange} />
+                <Range ref="range" min={0} max={500} onChange={this.onChange} />
             </div>
         );
     }

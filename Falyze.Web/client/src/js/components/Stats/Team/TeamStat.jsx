@@ -78,7 +78,7 @@ module.exports = Lean.createController({
                         <div className="table-bar">Table<i className="icon-right-open-big"></i></div>
                     ))}
                     {q.if(model.tableState.full, (
-                        <Table rows={model.tables.full} teamId={model.teamId} teamCount={5} />
+                        <Table rows={model.tables.full} teamId={model.teamId} teamCount={5} title="Table" />
                     ))}
                 </div>
                 <div className="mb" onClick={this.onHomeTableClick}>
@@ -86,7 +86,7 @@ module.exports = Lean.createController({
                         <div className="table-bar">Home table<i className="icon-right-open-big"></i></div>
                     ))}
                     {q.if(model.tableState.home, (
-                        <Table rows={model.tables.home} teamId={model.teamId} teamCount={5} />
+                        <Table rows={model.tables.home} teamId={model.teamId} teamCount={5} title="Home table" />
                     ))}
                 </div>
                 <div className="mb" onClick={this.onAwayTableClick}>
@@ -94,7 +94,7 @@ module.exports = Lean.createController({
                         <div className="table-bar">Away table<i className="icon-right-open-big"></i></div>
                     ))}
                     {q.if(model.tableState.away, (
-                        <Table rows={model.tables.away} teamId={model.teamId} teamCount={5} />
+                        <Table rows={model.tables.away} teamId={model.teamId} teamCount={5} title="Away table" />
                     ))}
                 </div>
             </div>

@@ -1,5 +1,24 @@
 ﻿var __find = require('lodash/collection/find');
 
+function getTableRowForTeam(table, teamId) {
+    return !!teamId ? __find(table, (r) => r.teamId === teamId) : {};
+}
+
+function populateFromTable(team1Id, team2Id, team1Stats, team2Stats, tableProp) {
+    var prop = {};
+    var team1Val = !!team1Id ? getTableRowForTeam(team1Stats.tables.table, team1Id)[tableProp] : null;
+    var team2Val = !!team2Id ? getTableRowForTeam(team2Stats.tables.table, team2Id)[tableProp] : null;
+    prop.team1 = {
+        min: team1Val || filters[f].team1.min,
+        max: team1Val || filters[f].team1.max
+    }
+    prop.team2 = {
+        min: team2Val || filters[f].team2.min,
+        max: team2Val || filters[f].team2.max
+    }
+    return prop;
+}
+
 module.exports = {
     toArray: function(filterStore){
         var filters = filterStore.get('filters');
@@ -70,5 +89,36 @@ module.exports = {
         affected = filters.filter((f) => f.order > current.order);
         affected.forEach((a) => a.order -= 1);
         current.order = filters.length;
+    },
+    populate: function (filterStore, teamStatStore) {
+        var filters = filterStore.get('filters'),
+            team1 = teamStatStore.get('selected').team1,
+            team2 = teamStatStore.get('selected').team2,
+            team1Stats = teamStatStore.get('team1'),
+            team2Stats = teamStatStore.get('team2'),
+            populated = {};
+        for (var f in filters) {
+            if (filters[f].visible) {
+                populated[f] = {
+                    team1: null,
+                    team2: null
+                }
+                switch (f) {
+                    case 'winsFilter': populated[f] = populateFromTable(team1, team2, team1Stats, team2Stats, 'wins'); break;
+                    case 'pointsFilter': populated[f] = populateFromTable(team1, team2, team1Stats, team2Stats, 'points'); break;
+                    case 'roundsFilter': populated[f] = populateFromTable(team1, team2, team1Stats, team2Stats, 'round'); break;
+                    case 'pointsFilter': populated[f] = populateFromTable(team1, team2, team1Stats, team2Stats, 'points'); break;
+                    case 'lossesFilter': populated[f] = populateFromTable(team1, team2, team1Stats, team2Stats, 'losses'); break;
+                    case 'goalDiffFilter': populated[f] = populateFromTable(team1, team2, team1Stats, team2Stats, 'goalDiff'); break;
+                    case 'goalsForFilter': populated[f] = populateFromTable(team1, team2, team1Stats, team2Stats, 'goalsFor'); break;
+                    case 'goalsAgainstFilter': populated[f] = populateFromTable(team1, team2, team1Stats, team2Stats, 'goalsAgainst'); break;
+                    case 'positionFilter': populated[f] = populateFromTable(team1, team2, team1Stats, team2Stats, 'position'); break;
+                    case 'teamFilter': populated[f] = { team1: { teamId: team1 }, team2: {teamId: team2}}; break;
+                    default:
+
+                }
+            }
+        }
+        return populated;
     }
 }

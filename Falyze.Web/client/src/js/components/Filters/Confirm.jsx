@@ -40,7 +40,7 @@ module.exports = Lean.createController({
         'button': function(){
             return (
                 <div>
-                    <button data-am-button="green stretch">Show Stats<i className="icon-right-open-big"></i></button>
+                    <button data-am-button="green cta stretch"><i className="icon-chart-line"></i>Show Stats<i className="icon-right-open-big icon-cta"></i></button>
                 </div>
             );
         }

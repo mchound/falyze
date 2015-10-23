@@ -43,6 +43,16 @@
     width: 100%;
 }
 
+[data-am-button~="cta"]{
+    position: relative;
+    padding-left: 25px;
+    padding-right: 45px;
+    .icon-cta{
+        position: absolute;
+        right: 5px;
+    }
+}
+
 [data-am-button][disabled]{
     background-color: @clr-disabled;
     color: @clr-disabled-text;

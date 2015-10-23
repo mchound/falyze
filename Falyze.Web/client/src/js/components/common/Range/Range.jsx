@@ -103,6 +103,9 @@ module.exports = Lean.createController({
         }
         this.setStateAndNotify({ max: max });
     },
+    set: function(min, max){
+        this.setState({ min: min, max: max });
+    },
     view: function (model, state, props) {
         return (
             <div data-am-range>

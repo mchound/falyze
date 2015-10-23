@@ -26,7 +26,10 @@ module.exports = Lean.createController({
     view: function (model, state, props, q) {
         return (
             <table data-am-matchtable>
-                <thead><tr><th></th><th className="team">Team</th><th>M</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>P</th></tr></thead>
+                <thead>
+                    <tr className="title"><th colSpan="10">{props.title}</th></tr>
+                    <tr><th></th><th className="team"></th><th>M</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>+/-</th><th>P</th></tr>
+                </thead>
                 <tbody>
                     {model.table.map((r) => (
                         (<tr key={r.position} className={r.teamId === props.teamId ? 'highlight' : null}>
