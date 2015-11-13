@@ -16,5 +16,4 @@ var action = function(alias){
 		}
 	}
 };
-
 module.exports = action;

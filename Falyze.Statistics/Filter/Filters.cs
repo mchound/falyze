@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Falyze.Business;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace Falyze.Statistics.Filter
 {
     public class TeamFilter : Filter
     {
-        public int TeamId { get; set; }
+        public Guid TeamId { get; set; }
 
         public override bool Valid(Match match, Side side)
         {

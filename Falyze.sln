@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Falyze.Statistics", "Falyze
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Falyze.Cache", "Falyze.Cache\Falyze.Cache.csproj", "{6BDBCA78-B293-4911-881F-A72DEC3DABE9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnakeMap", "SnakeMap\SnakeMap.csproj", "{A0737B1C-8E5D-4ECF-B54D-9D1FEAEB9C2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Falyze.Business", "Falyze.Core\Falyze.Business.csproj", "{1900A510-3C27-4F20-8448-1E8E3084AFEC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{6BDBCA78-B293-4911-881F-A72DEC3DABE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BDBCA78-B293-4911-881F-A72DEC3DABE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BDBCA78-B293-4911-881F-A72DEC3DABE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0737B1C-8E5D-4ECF-B54D-9D1FEAEB9C2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0737B1C-8E5D-4ECF-B54D-9D1FEAEB9C2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0737B1C-8E5D-4ECF-B54D-9D1FEAEB9C2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0737B1C-8E5D-4ECF-B54D-9D1FEAEB9C2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1900A510-3C27-4F20-8448-1E8E3084AFEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1900A510-3C27-4F20-8448-1E8E3084AFEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1900A510-3C27-4F20-8448-1E8E3084AFEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1900A510-3C27-4F20-8448-1E8E3084AFEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

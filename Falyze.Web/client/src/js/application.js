@@ -29,7 +29,15 @@ Lean.inject({
     'filter-add': require('./components/Filters/Add.jsx'),
     'team-selector': require('./components/Stats/Team/TeamSelector.jsx'),
     'team-stat': require('./components/Stats/Team/TeamStat.jsx'),
-    'filter-populate': require('./components/Filters/Populator.jsx')
+    'filter-populate': require('./components/Filters/Populator.jsx'),
+
+    'import': require('./components/Import/Import.jsx'),
+    'import-country': require('./components/Import/Country.jsx'),
+    'import-league': require('./components/Import/League.jsx'),
+    'import-matches': require('./components/Import/Matches.jsx'),
+    'import-teams': require('./components/Import/Teams/MatchTeams.jsx'),
+    'import-team': require('./components/Import/Teams/Create.jsx'),
+    'import-countryteams': require('./components/Import/Teams/CountryTeams.jsx')
 });
 
 var resourceCount = 0,
@@ -77,6 +85,7 @@ window.onload = function () {
     }
 
     if (resourceCount === 3) {
-        document.getElementById('splash').remove();
+        var node = document.getElementById('splash');
+        if(!!node) node.remove();
     }
 };

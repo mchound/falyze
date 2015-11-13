@@ -31,12 +31,20 @@
     padding: 5px;
 }
 
+[data-am-button~="thinner"]{
+    padding: 10px;
+}
+
 [data-am-button~="turquoise"]{
     .btn-hover(@clr-turquoise);
 }
 
 [data-am-button~="green"]{
     .btn-hover(@clr-green);
+}
+
+[data-am-button~="red"]{
+    .btn-hover(@clr-red);
 }
 
 [data-am-button~="stretch"]{
@@ -57,4 +65,14 @@
     background-color: @clr-disabled;
     color: @clr-disabled-text;
     cursor: default;
+}
+
+[data-am-button~="link"]{
+    color: @clr-link;
+    background-color: transparent;
+    padding: 0;
+
+    &:hover{
+        color: darken(@clr-link, 10%);
+    }
 }

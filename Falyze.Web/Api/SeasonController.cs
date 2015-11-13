@@ -1,6 +1,5 @@
 ﻿using Falyze.Cache;
 using Falyze.Data;
-using Falyze.Statistics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +11,11 @@ namespace Falyze.Web.Api
 {
     public class SeasonController : ApiController
     {
-        [HttpGet]
-        public HttpResponseMessage Get()
-        {
-            StatisticsService service = new StatisticsService(new Repository(), new StatisticManager(), new CacheService());
-            return Request.CreateResponse<IEnumerable<Falyze.Data.Models.Season>>(HttpStatusCode.OK, service.GetSeasons());
-        }
+        //[HttpGet]
+        //public HttpResponseMessage Get()
+        //{
+        //    StatisticsService service = new StatisticsService(new Repository(new BetterDatabase()), new StatisticManager(), new CacheService());
+        //    return Request.CreateResponse<IEnumerable<Falyze.Data.Models.Season>>(HttpStatusCode.OK, service.GetSeasons());
+        //}
     }
 }

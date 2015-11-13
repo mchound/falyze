@@ -120,6 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\CountryController.cs" />
+    <Compile Include="Api\ImportController.cs" />
     <Compile Include="Api\StatsController.cs" />
     <Compile Include="Api\TeamController.cs" />
     <Compile Include="Api\MatchController.cs" />
@@ -129,6 +130,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImportController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -157,6 +159,7 @@
     <Content Include="client\src\js\lean\Store\store.js" />
     <Content Include="client\src\js\lean\viewHelper.js" />
     <Content Include="client\src\js\stores\FilterStore.js" />
+    <Content Include="client\src\js\stores\import\ImportStore.js" />
     <Content Include="client\src\js\stores\TeamStatStore.js" />
     <Content Include="client\src\js\stores\TeamStore.js" />
     <Content Include="client\src\js\stores\MatchStore.js" />
@@ -181,7 +184,22 @@
     <Content Include="client\src\js\components\Stats\Team\TeamStat.jsx" />
     <Content Include="client\src\js\components\Stats\Team\MatchList.jsx" />
     <Content Include="client\src\js\components\Filters\Populator.jsx" />
+    <Content Include="client\src\js\components\Import\Import.jsx" />
+    <Content Include="client\src\js\components\Import\Country.jsx" />
+    <Content Include="client\src\js\components\Import\League.jsx" />
+    <Content Include="client\src\js\components\Import\Matches.jsx" />
+    <Content Include="client\src\js\components\Import\Teams\MatchTeams.jsx" />
+    <Content Include="client\src\js\components\Import\Teams\NewTeam.jsx" />
+    <Content Include="client\src\js\components\Import\Teams\Create.jsx" />
+    <Content Include="client\src\js\components\Import\Teams\CountryTeams.jsx" />
+    <Content Include="client\src\styles\foundation\button.less" />
     <None Include="client\src\styles\modules\box.less" />
+    <Content Include="client\src\styles\modules\import\import.less" />
+    <Content Include="client\src\styles\modules\import\country.less" />
+    <Content Include="client\src\styles\modules\import\form.less" />
+    <Content Include="client\src\styles\modules\import\grid.less" />
+    <Content Include="client\src\styles\modules\import\matches.less" />
+    <Content Include="client\src\styles\modules\import\teams.less" />
     <None Include="client\src\styles\modules\matchtable.less" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -197,19 +215,24 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\Filters\_Filter.cshtml" />
+    <Content Include="Views\Import\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Falyze.Cache\Falyze.Cache.csproj">
       <Project>{6bdbca78-b293-4911-881f-a72dec3dabe9}</Project>
       <Name>Falyze.Cache</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Falyze.Core\Falyze.Business.csproj">
+      <Project>{1900a510-3c27-4f20-8448-1e8e3084afec}</Project>
+      <Name>Falyze.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Falyze.Data\Falyze.Data.csproj">
       <Project>{e0152376-8486-4f0b-91cc-fdf1f516ac5c}</Project>
       <Name>Falyze.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Falyze.Statistics\Falyze.Statistics.csproj">
-      <Project>{f2c69dce-e1c4-4642-a097-9907f9c7c31e}</Project>
-      <Name>Falyze.Statistics</Name>
+    <ProjectReference Include="..\SnakeMap\SnakeMap.csproj">
+      <Project>{a0737b1c-8e5d-4ecf-b54d-9d1feaeb9c2c}</Project>
+      <Name>SnakeMap</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -11,11 +11,17 @@ module.exports = {
         return props.join(' ');
     },
     itemMapper: function (component, key, props) {
-        return function (item) {
-            props.key = item[key];
+        return function (item, i) {
+            props.key = !key ? i : item[key];
             props.item = item;
             return React.createElement(component, props);
         }
+    },
+    map: function(items, component, key, props){
+        return items.map(this.itemMapper(component, key, props));
+    },
+    hide: function(expression){
+        return !!expression ? 'hidden' : null;
     },
     if: function (condition, jsx) {
         if (condition) {

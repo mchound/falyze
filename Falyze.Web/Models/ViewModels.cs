@@ -10,4 +10,10 @@ namespace Falyze.Web.Models
         public string Title { get; set; }
         public string FilterName { get; set; }
     }
+
+    public class TeamAnalyzerModel
+    {
+        public IEnumerable<string> TeamNames { get; set; }
+        public Guid CountryId { get; set; }
+    }
 }

@@ -45,7 +45,9 @@ namespace Falyze.Data.DbConnector
 
             SqlCommand cmd = new SqlCommand(string.Format("SELECT * FROM {0} {1} {2}", tableName, hasCustomCommand ? "WHERE": string.Empty, sqlCommand), _connection);
             SqlDataReader rdr = cmd.ExecuteReader(System.Data.CommandBehavior.Default);
-            return EntityMapper.MapToEntities<T>(rdr).ToList();
+            IEnumerable<T> entities = EntityMapper.MapToEntities<T>(rdr).ToList();
+            rdr.Close();
+            return entities;
         }
 
         public void Dispose()

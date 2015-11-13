@@ -44,21 +44,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DbConnector\ConnectionAttribute.cs" />
-    <Compile Include="DbConnector\Database.cs" />
-    <Compile Include="DbConnector\DbTable.cs" />
-    <Compile Include="DbConnector\EntityMapper.cs" />
-    <Compile Include="DbConnector\TableAttribute.cs" />
+    <Compile Include="BetterDatabase.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\League.cs" />
     <Compile Include="Models\Match.cs" />
     <Compile Include="Models\Season.cs" />
+    <Compile Include="Models\TeamAlias.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SnakeMap\SnakeMap.csproj">
+      <Project>{a0737b1c-8e5d-4ecf-b54d-9d1feaeb9c2c}</Project>
+      <Name>SnakeMap</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,5 +1,4 @@
 ﻿using Falyze.Data.Models;
-using Falyze.Statistics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +8,7 @@ namespace Falyze.Web.Helpers.Extensions
 {
     public static class TeamExtensions
     {
-        public static IEnumerable<Team> ExtractTeams(this IEnumerable<Falyze.Statistics.Match> matches)
+        public static IEnumerable<Team> ExtractTeams(this IEnumerable<Falyze.Business.Match> matches)
         {
             HashSet<Team> teams = new HashSet<Team>();
             foreach (var match in matches)

@@ -1,8 +1,5 @@
 ﻿using Falyze.Cache;
 using Falyze.Data;
-using Falyze.Data.DbConnector;
-using Falyze.Statistics;
-using Falyze.Statistics.Filter;
 using System;
 using System.Collections.Generic;
 using System.Linq;

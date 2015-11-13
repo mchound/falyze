@@ -55,9 +55,17 @@
       <Project>{6bdbca78-b293-4911-881f-a72dec3dabe9}</Project>
       <Name>Falyze.Cache</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Falyze.Core\Falyze.Business.csproj">
+      <Project>{1900a510-3c27-4f20-8448-1e8e3084afec}</Project>
+      <Name>Falyze.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Falyze.Data\Falyze.Data.csproj">
       <Project>{e0152376-8486-4f0b-91cc-fdf1f516ac5c}</Project>
       <Name>Falyze.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SnakeMap\SnakeMap.csproj">
+      <Project>{a0737b1c-8e5d-4ecf-b54d-9d1feaeb9c2c}</Project>
+      <Name>SnakeMap</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
