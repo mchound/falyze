@@ -2,7 +2,7 @@
     __assign = require('lodash/object/assign'),
     __toArray = require('lodash/lang/toarray'),
     common = require('./common'),
-    Ajax = require('./ajax');
+    Ajax = require('../../utils/ajax');
 
 function ServerStore(options) {
 

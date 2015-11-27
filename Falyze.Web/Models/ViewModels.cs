@@ -11,9 +11,21 @@ namespace Falyze.Web.Models
         public string FilterName { get; set; }
     }
 
-    public class TeamAnalyzerModel
+    public class TeamAliasClientModel
     {
-        public IEnumerable<string> TeamNames { get; set; }
+        public Guid TeamId { get; set; }
+        public string Alias { get; set; }
+    }
+
+    public class RawMatch
+    {
+        public Guid HomeTeamId { get; set; }
+        public Guid AwayTeamId { get; set; }
+        public byte HomeTeamGoals { get; set; }
+        public byte AwayTeamGoals { get; set; }
+        public DateTime Date { get; set; }
         public Guid CountryId { get; set; }
+        public Guid LeagueId { get; set; }
+        public int StartYear { get; set; }
     }
 }

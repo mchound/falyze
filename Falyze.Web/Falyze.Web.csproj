@@ -117,8 +117,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="client\src\js\obervables\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\Admin\BaseAdminController.cs" />
+    <Compile Include="Api\Admin\AliasController.cs" />
+    <Compile Include="Api\Admin\TeamController.cs" />
+    <Compile Include="Api\Admin\SeasonController.cs" />
+    <Compile Include="Api\Admin\LeagueController.cs" />
+    <Compile Include="Api\Admin\CountryController.cs" />
+    <Compile Include="Api\Admin\EntityController.cs" />
     <Compile Include="Api\CountryController.cs" />
     <Compile Include="Api\ImportController.cs" />
     <Compile Include="Api\StatsController.cs" />
@@ -129,6 +137,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImportController.cs" />
     <Compile Include="Global.asax.cs">
@@ -136,6 +145,7 @@
     </Compile>
     <Compile Include="Helpers\Extensions\TeamExtensions.cs" />
     <Compile Include="Helpers\ModelBinders\EnumerableModelBinder.cs" />
+    <Compile Include="Models\Converters.cs" />
     <Compile Include="Models\ViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -144,8 +154,20 @@
     <Content Include="client\dist\application.js" />
     <Content Include="client\dist\font\fontello.svg" />
     <Content Include="client\src\js\actions\Actions.js" />
+    <Content Include="client\src\js\actions\admin.js" />
     <Content Include="client\src\js\application.js" />
+    <Content Include="client\src\js\components\admin\upload\parseMatchWorker.js" />
+    <Content Include="client\src\js\components\admin\utils\matchUtils.js" />
+    <Content Include="client\src\js\components\admin\utils\msgUtils.js" />
     <Content Include="client\src\js\domConnectors\connectors.js" />
+    <Content Include="client\src\js\lean.v2\action.js" />
+    <Content Include="client\src\js\lean.v2\component.js" />
+    <Content Include="client\src\js\lean.v2\lean.js" />
+    <Content Include="client\src\js\lean.v2\observable.js" />
+    <Content Include="client\src\js\lean.v2\repository\repository.js" />
+    <Content Include="client\src\js\lean.v2\repository\serverRepository.js" />
+    <Content Include="client\src\js\lean.v2\serverManager.js" />
+    <Content Include="client\src\js\lean.v2\viewHelper.js" />
     <Content Include="client\src\js\lean\action.js" />
     <Content Include="client\src\js\lean\connector.js" />
     <Content Include="client\src\js\lean\controller.js" />
@@ -158,6 +180,14 @@
     <Content Include="client\src\js\lean\Store\serverStore.js" />
     <Content Include="client\src\js\lean\Store\store.js" />
     <Content Include="client\src\js\lean\viewHelper.js" />
+    <Content Include="client\src\js\repositories\admin\adminRepo.js" />
+    <Content Include="client\src\js\repositories\admin\aliasRepo.js" />
+    <Content Include="client\src\js\repositories\admin\teamRepo.js" />
+    <Content Include="client\src\js\repositories\admin\seasonRepo.js" />
+    <Content Include="client\src\js\repositories\admin\leagueRepo.js" />
+    <Content Include="client\src\js\repositories\admin\countryRepo.js" />
+    <Content Include="client\src\js\repositories\admin\messageRepo.js" />
+    <Content Include="client\src\js\stores\admin\countryStore.js" />
     <Content Include="client\src\js\stores\FilterStore.js" />
     <Content Include="client\src\js\stores\import\ImportStore.js" />
     <Content Include="client\src\js\stores\TeamStatStore.js" />
@@ -170,7 +200,9 @@
     <Content Include="client\dist\font\fontello.eot" />
     <Content Include="client\dist\font\fontello.ttf" />
     <Content Include="client\dist\font\fontello.woff" />
+    <Content Include="client\src\js\utils\ajax.js" />
     <Content Include="client\src\js\utils\Filter.js" />
+    <Content Include="client\src\js\utils\Import.js" />
     <Content Include="client\src\js\utils\Utils.js" />
     <Content Include="client\src\styles\icon-font.less" />
     <Content Include="client\src\js\components\Filters\Title.jsx" />
@@ -193,13 +225,34 @@
     <Content Include="client\src\js\components\Import\Teams\Create.jsx" />
     <Content Include="client\src\js\components\Import\Teams\CountryTeams.jsx" />
     <Content Include="client\src\styles\foundation\button.less" />
+    <Content Include="client\src\js\components\Import\Save.jsx" />
+    <Content Include="client\src\js\components\Import\Status.jsx" />
+    <Content Include="client\src\styles\modules\admin\admin.less" />
+    <Content Include="client\src\styles\modules\admin\editpanel.less" />
+    <Content Include="client\src\js\components\admin\editPanel\editPanel.jsx" />
+    <Content Include="client\src\js\components\common\form\validationInput.jsx" />
+    <Content Include="client\src\js\components\admin\country\_country.jsx" />
+    <Content Include="client\src\js\components\admin\messages\messages.jsx" />
+    <Content Include="client\src\styles\modules\admin\messages.less" />
+    <Content Include="client\src\js\components\admin\league\_league.jsx" />
+    <Content Include="client\src\js\components\common\form\validationGroup.jsx" />
+    <Content Include="client\src\js\components\admin\entity\entity.jsx" />
+    <Content Include="client\src\js\components\admin\season\season.jsx" />
+    <Content Include="client\src\js\components\admin\country\country.jsx" />
+    <Content Include="client\src\js\components\admin\league\league.jsx" />
+    <Content Include="client\src\js\components\admin\team\team.jsx" />
+    <Content Include="client\src\js\components\admin\alias\alias.jsx" />
+    <Content Include="client\src\js\components\admin\upload\upload.jsx" />
+    <Content Include="client\src\styles\modules\admin\upload.less" />
     <None Include="client\src\styles\modules\box.less" />
+    <None Include="client\src\styles\modules\admin\form.less" />
     <Content Include="client\src\styles\modules\import\import.less" />
     <Content Include="client\src\styles\modules\import\country.less" />
     <Content Include="client\src\styles\modules\import\form.less" />
     <Content Include="client\src\styles\modules\import\grid.less" />
     <Content Include="client\src\styles\modules\import\matches.less" />
     <Content Include="client\src\styles\modules\import\teams.less" />
+    <Content Include="client\src\styles\modules\import\status.less" />
     <None Include="client\src\styles\modules\matchtable.less" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -216,6 +269,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\Filters\_Filter.cshtml" />
     <Content Include="Views\Import\Index.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Falyze.Cache\Falyze.Cache.csproj">

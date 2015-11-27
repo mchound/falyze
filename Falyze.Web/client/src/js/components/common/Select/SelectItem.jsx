@@ -5,11 +5,22 @@ var SelectItem = React.createClass({
         this.props.onClick(this.props.item);
     },
     render: function () {
-        return (
-            <li data-value={this.props.item.value} className={!!this.props.item.selected ? 'item selected' : 'item'} onClick={this.onClick}>
-                {this.props.item.text}
-            </li>
-        );
+        
+        if (!!this.props.item.selected) {
+            return (
+                <li data-value={this.props.item.value} className="item selected" onClick={this.onClick}>
+                    <i className="selected-icon icon-check"></i>
+                    {this.props.item.text}
+                </li>
+            );
+        }
+        else {
+            return (
+                <li data-value={this.props.item.value} className="item" onClick={this.onClick}>
+                    {this.props.item.text}
+                </li>
+            );
+        }
     }
 });
 

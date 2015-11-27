@@ -10,13 +10,13 @@ using System.Web.Http;
 
 namespace Falyze.Web.Api
 {
-    public class CountryController : ApiController
-    {
-        //[HttpGet]
-        //public HttpResponseMessage Get()
-        //{
-        //    StatisticsService service = new StatisticsService(new Repository(new BetterDatabase()), new StatisticManager(), new CacheService());
-        //    return Request.CreateResponse<IEnumerable<Falyze.Data.Models.Country>>(HttpStatusCode.OK, service.GetCountries());
-        //}
-    }
+    //public class CountryController : ApiController
+    //{
+    //    [HttpGet]
+    //    public HttpResponseMessage Get()
+    //    {
+    //        StatisticsService service = new StatisticsService(new Repository(new BetterDatabase()), new StatisticManager(), new CacheService());
+    //        return Request.CreateResponse<IEnumerable<Falyze.Data.Models.Country>>(HttpStatusCode.OK, service.GetCountries());
+    //    }
+    //}
 }

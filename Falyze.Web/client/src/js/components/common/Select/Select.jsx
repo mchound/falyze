@@ -76,8 +76,9 @@ module.exports = Lean.createController({
         this.setState({ showItems: !this.state.showItems });
     },
     action: function (state, props) {
+        
         return {
-            items: state.items.sort((a, b) => (a.sortBy > b.sortBy ? 1 : a.sortBy < b.sortBy ? -1 : 0)),
+            items: state.items.sort(sorter),
             attr: {disabled: props.disabled, open: state.showItems}
         }
     },

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -52,6 +53,9 @@ namespace SnakeMap
             return this.GetType().GetProperties().First(p => p.Name == primaryKeyField).GetValue(this).ToString();
         }
 
-        
+        public virtual object[] GetColumnValues()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

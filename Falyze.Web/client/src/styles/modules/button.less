@@ -75,4 +75,43 @@
     &:hover{
         color: darken(@clr-link, 10%);
     }
+
+    &[data-am-button~="icon"]{
+        color: @clr-link;
+        i:before{
+            margin-right: 0;
+        }
+    }
+}
+
+[data-am-button~="inline"]{
+    display: inline-block;
+}
+
+.btn-group{
+    [data-am-button]{
+        margin-left: 5px;
+        &:first-child{
+            margin-left: 0;
+        }
+    }
+
+    &.center{
+        text-align: center;
+    }
+
+    &.right{
+        text-align: right;
+    }
+
+    &[class*="fill-"]{
+        margin-left: 5px;
+        [data-am-button]:first-child{
+            margin-left: -5px;
+        }
+    }
+
+    &.fill-2 [data-am-button]{
+        width: 50%;
+    }
 }

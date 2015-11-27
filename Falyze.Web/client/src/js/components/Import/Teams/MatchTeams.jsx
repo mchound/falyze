@@ -23,12 +23,16 @@ module.exports = Lean.createController({
     shouldRender: function(state){
         return state.store.import.matches.length > 0;
     },
-    action: function () {
-        var teamsAndAliases = this.state.store.import.teams.map((t) => t.name).concat(this.state.store.import.aliases.map((a) => a.alias)),
+    action: function (state, props) {
+        var allTeams = this.state.store.import.teams,
+            allAliases = this.state.store.import.aliases,
+            teamsAndAliases = allTeams.concat(allAliases),
             countryId = this.state.store.import.country.id,
-            matchTeams = __unique(this.state.store.import.matches, (m) => m.homeTeam).map((m) => m.homeTeam),
-            newTeams = matchTeams.filter((t) => teamsAndAliases.indexOf(t) === -1).map((t, i) => ({nr: i, name: t})),
-            existing = matchTeams.filter((t) => teamsAndAliases.indexOf(t) > -1);
+            matchTeams = __unique(state.store.import.matches.map((m) => m.homeTeam).concat(state.store.import.matches.map((m) => m.awayTeam))),
+            newTeams = matchTeams.filter((t) => !allTeams.find((ta) => ta.name === t) && !allAliases.find((a) => a.alias === t)).map((t, i) => ({ nr: i, name: t })),
+            existing = allTeams.filter((t) => matchTeams.indexOf(t.name) > -1).map((t) => ({ id: t.id, name: t.name })).concat(
+                allAliases.filter((a) => matchTeams.indexOf(a.alias) > -1).map((a) => ({ id: a.id, name: a.alias, aliasFor: allTeams.find((t) => a.teamId === t.id)}))
+            );
         return {
             existing: existing,
             newTeams: newTeams
@@ -46,9 +50,9 @@ module.exports = Lean.createController({
                 <h2>Existing teams</h2>
                 <table className="teams mb">
                     <tbody>
-                        {model.existing.map((t, i) => { return (
-                            <tr key={i}><td>{i + 1}</td><td>{t}</td></tr>
-                        )})}
+                        {model.existing.map((t, i) => {
+                            return ( <tr key={t.id}><td>{i + 1}</td><td>{t.name}</td><td>{!!t.aliasFor ? t.aliasFor.name : null}</td></tr> )
+                        })}
                     </tbody>
                 </table>
             </div>

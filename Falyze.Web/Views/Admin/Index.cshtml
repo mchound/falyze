@@ -1,0 +1,53 @@
+﻿<div data-am-admin>
+    <div data-lean-component="admin-country"></div>
+    <div data-lean-component="admin-season"></div>
+    <div data-lean-component="admin-league"></div>
+    <div data-lean-component="admin-team"></div>
+    <div data-lean-component="admin-alias"></div>
+    <div data-lean-component="admin-matchupload"></div>
+
+    <div data-lean-component="admin-messages" data-am-messages></div>
+    @*<input type="file" id="upload" />
+    <div id="dest"></div>*@
+</div>
+
+@*<script>
+
+    var removes = ['res', 'ht res', 'Avg H Odds', 'Max H Odds', 'Avg D Odds', 'Max D Odds', 'Avg A Odds', 'Max A Odds', 'Avg ov25', 'Max ov25', 'Avg un25', 'Max un25'];
+
+    window.addEventListener('load', function () {
+        var upload = document.querySelector('#upload');
+        upload.addEventListener('change', function () {
+            var fr = new FileReader();
+            fr.addEventListener('load', function (e) {
+                var result = e.target.result;
+                var start = (/<table/g).exec(result).index;
+                var end = (/<\/table/g).exec(result).index + 8;
+                var source = result.substring(start, end);
+                var div = document.createElement('div');
+                div.innerHTML = source;
+
+                for (var i = 0; i < removes.length; i++) {
+                    var r = removes[i].toLowerCase();
+                    var ths = div.querySelectorAll('th');
+                    var index;
+                    var q;
+                    for (q = 0; q < ths.length; q++) {
+                        if (ths[q].innerText.toLowerCase() === r) {
+                            index = q;
+                            break;
+                        }
+                    }
+                    ths[q].remove();
+                    var cols = div.querySelectorAll('tr td:nth-child(' + (q + 1) + ')');
+                    for (var c = 0; c < cols.length; c++) {
+                        cols[c].remove();
+                    }
+                }
+
+                document.querySelector('#dest').appendChild(div);
+            });
+            fr.readAsBinaryString(upload.files[0]);
+        });
+    });
+</script>*@

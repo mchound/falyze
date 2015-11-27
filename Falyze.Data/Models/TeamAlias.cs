@@ -9,9 +9,8 @@ using System.Data.SqlClient;
 namespace Falyze.Data.Models
 {
     [Table(Name = "TeamAliases")]
-    public class TeamAlias : Table
+    public class TeamAlias : Entity
     {
-        public Guid Id { get; set; }
         public Guid TeamId { get; set; }
         public string Alias { get; set; }
 
@@ -20,6 +19,16 @@ namespace Falyze.Data.Models
             this.Id = sqlDataReader.GetGuid(sqlDataReader.GetOrdinal("Id"));
             this.Alias = sqlDataReader.GetString(sqlDataReader.GetOrdinal("alias"));
             this.TeamId = sqlDataReader.GetGuid(sqlDataReader.GetOrdinal("TeamId"));
+        }
+
+        public override Dictionary<string, string> GetEntityValues()
+        {
+            return new Dictionary<string, string>
+            {
+                { "Id", string.Format("'{0}'", this.Id.ToString())},
+                { "TeamId", string.Format("'{0}'", this.TeamId.ToString())},
+                { "Alias", string.Format("N'{0}'", this.Alias)}
+            };
         }
     }
 }

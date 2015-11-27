@@ -1,0 +1,23 @@
+﻿[data-am-form]{
+
+    input{
+        padding: 14px;
+        width: 100%;
+        outline: none;
+        border: 1px solid #ccc;
+    }
+
+    .error input{
+        border: 1px solid @clr-red;
+    }
+
+    .error-message{
+        color: @clr-red;
+        &:before{
+            content: " ";
+            display: block;
+            margin-bottom: 5px;
+        }
+    }
+
+}

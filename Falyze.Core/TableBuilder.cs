@@ -11,7 +11,13 @@ namespace Falyze.Business
 {
     public interface ITableBuilder
     {
+        IEnumerable<TableRow> Table { get; }
+        IEnumerable<TableRow> HomeTable { get; }
+        IEnumerable<TableRow> AwayTable { get; }
+
         void AddMatch(RawMatch rawMatch);
+        void AddMatches(IEnumerable<RawMatch> rawMatches);
+        void CloseSeason();
         TableRow GetTableRowCopyForTeam(Guid teamId, MatchSide tableSide);
     }
 
@@ -22,6 +28,11 @@ namespace Falyze.Business
         private List<TableRow> _awayTable;
         private List<RawMatch> _pendingMatches;
         private DateTime _lastDate;
+
+        public IEnumerable<TableRow> Table{ get { return _table.OrderBy(r => r.Position); }}
+        public IEnumerable<TableRow> HomeTable { get { return _homeTable.OrderBy(r => r.Position); } }
+        public IEnumerable<TableRow> AwayTable { get { return _awayTable.OrderBy(r => r.Position); } }
+
 
         public TableBuilder(IEnumerable<RawMatch> matches, IEnumerable<Team> teams)
         {
@@ -61,6 +72,16 @@ namespace Falyze.Business
             }
         }
 
+        public void AddMatches(IEnumerable<RawMatch> rawMatches)
+        {
+            foreach (var match in rawMatches.OrderBy(m => m.Date))
+            {
+                this.AddMatch(match);
+            }
+
+            this.CloseSeason();
+        }
+
         public TableRow GetTableRowCopyForTeam(Guid teamId, MatchSide tableSide)
         {
             switch (tableSide)
@@ -72,6 +93,14 @@ namespace Falyze.Business
                 default:
                     return _table.First(r => r.TeamId == teamId).Clone() as TableRow;
             }
+        }
+
+        public void CloseSeason()
+        {
+            this.ProcessPendingMatches();
+            this.SortTable(_table);
+            this.SortTable(_homeTable);
+            this.SortTable(_awayTable);
         }
 
         private void ProcessPendingMatches()

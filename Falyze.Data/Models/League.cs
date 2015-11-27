@@ -9,9 +9,8 @@ using System.Data.SqlClient;
 namespace Falyze.Data.Models
 {
     [Table(Name = "Leagues")]
-    public class League : Table
+    public class League : Entity
     {
-        public Guid Id { get; set; }
         public string Name { get; set; }
         public int Level { get; set; }
         public Guid CountryId { get; set; }
@@ -24,13 +23,4 @@ namespace Falyze.Data.Models
             this.CountryId = sqlDataReader.GetGuid(sqlDataReader.GetOrdinal("CountryId"));
         }
     }
-
-    //[Table(Name = "Leagues")]
-    //public class League : Table
-    //{
-    //    public int Id { get; set; }
-    //    public string Name { get; set; }
-    //    public int Level { get; set; }
-    //    public int CountryId { get; set; }
-    //}
 }

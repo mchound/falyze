@@ -230,5 +230,5 @@ _Pvt_Extensions
 .fake/
 
 node_modules/
-Falyze.Web/client/dist
-
+dist/
+*.css

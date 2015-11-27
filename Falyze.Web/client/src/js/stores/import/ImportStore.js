@@ -13,6 +13,7 @@ module.exports = Lean.createStore({
         store.silent.add('startYear', null);
         store.silent.add('teams', []);
         store.silent.add('aliases', []);
+        store.silent.add('server', {status: '', notes: [], errors: []});
 
         this.actOn(Actions.Import.setCountry);
         this.actOn(Actions.Import.addLeague);
@@ -20,8 +21,12 @@ module.exports = Lean.createStore({
         this.actOn(Actions.Import.addMatches);
         this.actOn(Actions.Import.setStartYear);
         this.actOn(Actions.Import.addTeam);
+        this.actOn(Actions.Import.addAlias);
         this.actOn(Actions.Import.renameTeam);
         this.actOn(Actions.Import.deleteTeam);
+        this.actOn(Actions.Import.setServerStatus);
+        this.actOn(Actions.Import.removeServerError);
+        this.actOn(Actions.Import.removeServerNote);
     },
     onSetCountry: function (store, payload) {
         store.update('country', payload);
@@ -33,10 +38,14 @@ module.exports = Lean.createStore({
             Ajax.get('/api/import/league/' + payload.id,
                 function (leagues) {
                     store.update('leagues', leagues);
+                    if (leagues.length > 0) {
+                        store.update('leagueId', leagues[0]);
+                    }
                     store.update('fetchingLeagues', false);
                 },
                 function () {
                     store.update('fetchingLeagues', false);
+                    store.update('leagueId', null);
                 }
             );
 
@@ -69,6 +78,11 @@ module.exports = Lean.createStore({
         current.push(payload);
         store.update('teams', current);
     },
+    onAddAlias: function (store, payload) {
+        var current = store.get('aliases');
+        current.push(payload);
+        store.update('aliases', current);
+    },
     onRenameTeam: function (store, team) {
         var teams = store.get('teams'),
         old = teams.filter((t) => t.id === team.id)[0];
@@ -78,5 +92,25 @@ module.exports = Lean.createStore({
     onDeleteTeam: function (store, teamId) {
         var teams = store.get('teams').filter((t) => t.id !== teamId);
         store.update('teams', teams);
+    },
+    onSetServerStatus: function (store, payload) {
+        var current = store.get('server'),
+            status = payload.status !== undefined ? payload.status : '',
+            errors = payload.errors !== undefined && payload.errors.constructor === Array ? current.errors.concat(payload.errors) : current.errors,
+            notes = payload.notes !== undefined && payload.notes.constructor === Array ? current.notes.concat(payload.notes) : current.notes;
+        current.status = status;
+        current.errors = errors;
+        current.notes = notes;
+        store.update('server', current);
+    },
+    onRemoveServerError: function (store, payload) {
+        var current = store.get('server');
+        current.errors.splice(payload, 1);
+        store.update('server', current);
+    },
+    onRemoveServerNote: function (store, payload) {
+        var current = store.get('server');
+        current.notes.splice(payload, 1);
+        store.update('server', current);
     }
 });

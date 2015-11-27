@@ -48,7 +48,7 @@ namespace Falyze.Data
 
         public IEnumerable<Match> GetMatches(int seasonId, int leagueId)
         {
-            return _database.Get<Match>(string.Format("SeasonId={0} AND LeagueId={1}", seasonId, leagueId));
+            return _database.GetWhere<Match>(string.Format("SeasonId={0} AND LeagueId={1}", seasonId, leagueId));
         }
     }
 }

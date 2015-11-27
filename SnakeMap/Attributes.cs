@@ -18,7 +18,7 @@ namespace SnakeMap
         public string Name { get; set; }
     }
 
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
     public class PrimaryKeyAttribute : Attribute
     {
         public string Name { get; set; }

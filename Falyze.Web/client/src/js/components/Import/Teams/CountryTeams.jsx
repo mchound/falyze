@@ -52,7 +52,7 @@ module.exports = Lean.createController({
     },
     action: function (state, props) {
         return {
-            teams: state.store.import.teams
+            teams: state.store.import.teams.sort((a,b) => a.name.toLowerCase() > b.name.toLowerCase() ? 1 : (a.name.toLowerCase() === b.name.toLowerCase() ? 0 : -1))
         };
     },
     view: function (model, state, props, q) {

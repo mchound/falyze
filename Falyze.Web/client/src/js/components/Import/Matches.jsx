@@ -13,18 +13,24 @@ module.exports = Lean.createController({
     stores: [ImportStore],
     getInitialState: function () {
         return {
-            showMatches: true
+
         };
     },
-    onMatchClick: function (index) {
+    onDateClick: function (index, e) {
         var matches = this.state.store.import.matches,
             startYear = this.state.store.import.startYear;
-        for (var i = 0; i < matches.length; i++) {
-            if (i >= index) {
-                matches[i].date.setFullYear(startYear + 1);
-            }
-            else {
-                matches[i].date.setFullYear(startYear);
+
+        if (e.ctrlKey) {
+            matches[index].date.setFullYear(startYear + 1);
+        }
+        else {
+            for (var i = 0; i < matches.length; i++) {
+                if (i >= index) {
+                    matches[i].date.setFullYear(startYear + 1);
+                }
+                else {
+                    matches[i].date.setFullYear(startYear);
+                }
             }
         }
         Actions.Import.addMatches.dispatch(matches);
@@ -76,9 +82,9 @@ module.exports = Lean.createController({
                 }
 
                 return (
-                    <tr key={m.date + m.homeTeam}>
+                    <tr key={m.date + m.homeTeam} className={!!m.incomplete || !!m.note ? 'alert' : null}>
                         <td>{i + 1}</td>
-                        <td className="date" onClick={this.onMatchClick.bind(this, i)}>{m.date.getFullYear() + '-' + formatDate(m.date.getMonth() + 1) + '-' + formatDate(m.date.getDate())}</td>
+                        <td className="date" onClick={this.onDateClick.bind(this, i)}>{m.date.getFullYear() + '-' + formatDate(m.date.getMonth() + 1) + '-' + formatDate(m.date.getDate())}</td>
                         <td className="home-team">{m.homeTeam}</td>
                         <td className="result" onClick={this.onResultClick.bind(this, i)}>{result}</td>
                         <td className="away-team">{m.awayTeam}</td>
@@ -90,8 +96,7 @@ module.exports = Lean.createController({
 
         return (
             <div data-am-import-matches>
-                <button data-am-button="green" onClick={this.setStateShort.bind(this, {showMatches: !state.showMatches})}>{model.btnToggleTableText}</button>
-                <table className={state.showMatches ? 'matches' : 'hidden'}>
+                <table className="matches">
                     <tbody>
                         {matches}
                     </tbody>

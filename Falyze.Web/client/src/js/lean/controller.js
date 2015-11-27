@@ -12,11 +12,6 @@ function controller(options){
 	    return (<p>Loading...</p>);
 	}
 
-    //var storeChangeCallback = function(store){
-    //    this.store[store.alias] = store.get();
-    //    this.setState(this.store);
-    //}
-
 	var internalRender = function(){
 	    var viewModel = this.state,
             renderState = !!this.getRenderState ? this.getRenderState(this.state, this.props) : null,

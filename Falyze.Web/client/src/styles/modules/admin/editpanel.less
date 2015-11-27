@@ -1,0 +1,67 @@
+﻿[data-am-editpanel]{
+    width: 310px;
+    height: 100vh;
+    background-color: #f3f3f3;
+    position: fixed;
+    top: 0;
+    box-shadow: 0 0 20px rgba(0,0,0,.1);
+    padding: 15px;
+    left: 0;
+    z-index: 1;
+    animation: fromLeft;
+    animation-duration: 250ms;
+    animation-iteration-count: 1;
+
+    .overlay{
+        position: fixed;
+        left: 310px;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: rgba(0,0,0,0.3);
+        animation: bg;
+        animation-duration: 500ms;
+        animation-iteration-count: 1;
+    }
+
+    .header{
+        margin-bottom: 20px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #ddd;
+
+        &.actions{
+            .title{
+                display: inline-block;
+                line-height: 49px;
+            }
+            .icon{
+                float: right;
+            }
+        }
+    }
+
+}
+
+@keyframes fromLeft {
+    from {
+        left: -310px;
+    }
+
+    to {
+        left: 0;
+    }
+}
+
+@keyframes bg {
+    0% {
+        background-color: rgba(0,0,0,0);
+    }
+
+    50%{
+        background-color: rgba(0,0,0,0);
+    }
+
+    100% {
+        background-color: rgba(0,0,0,0.3);
+    }
+}

@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="BetterDatabase.cs" />
     <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\IEntity.cs" />
     <Compile Include="Models\League.cs" />
     <Compile Include="Models\Match.cs" />
     <Compile Include="Models\Season.cs" />

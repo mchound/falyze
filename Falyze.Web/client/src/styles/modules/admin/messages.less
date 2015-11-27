@@ -1,0 +1,66 @@
+﻿[data-am-messages]{
+    position: fixed;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.6);
+    left: 0;
+    right: 0;
+    color: #fff;
+
+    .messages{
+        padding: 25px;
+        list-style: none;
+
+        li{
+            cursor: pointer;
+        }
+    }
+
+    .update{
+        padding-left: 20px;
+        position: relative;
+        &:before{
+            animation: rotate;
+            animation-duration: 700ms;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            width: 9px;
+            height: 9px;
+            content: " ";
+            border: 3px solid #fff;
+            display: block;
+            border-radius: 50%;
+            border-right-color: transparent;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    }
+}
+
+
+@-webkit-keyframes rotate{
+    from{
+        transform: rotate(0);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotate{
+    from{
+        transform: rotate(0);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes rotate{
+    from{
+        transform: rotate(0);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
