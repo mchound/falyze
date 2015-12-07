@@ -1,7 +1,6 @@
 ﻿var React = require('react'),
     Lean = require('../../../lean.v2/lean'),
 
-    //LeagueRepo = require('../../../repositories/admin/leagueRepo'),
     AdminRepo = require('../../../repositories/admin/adminRepo'),
 
     _clone = require('lodash/lang/clone'),
@@ -28,7 +27,7 @@ var base = {
         this.setState({ isEditing: true, error: null });
     },
     onAdd: function () {
-        this.setState({ isAdding: true, error: null });
+        this.setState({ isAdding: true, error: null });        
     },
     onSubmit: function (e) {
         e.preventDefault();
@@ -72,11 +71,13 @@ var base = {
     onEntityUpdated: function (entity, resp) {
         MsgUtils.remove(this.entityType + ' - updating');
         MsgUtils.add(this.entityType + ' - updated', this.entityType + ' updated', null, 3000);
+        AdminRepo.model[this.entityType].set(entity);
         this.setState({ selected: entity, isEditing: false, error: null });
     },
     onEntityAdded: function (entity) {
         MsgUtils.remove(this.entityType + ' - adding');
         MsgUtils.add(this.entityType + ' - added', this.entityType + ' added', null, 3000);
+        AdminRepo.model[this.entityType].set(entity);
         this.setState({ isAdding: false, error: null, selected: entity });
     },
     onServerError: function (xhr) {

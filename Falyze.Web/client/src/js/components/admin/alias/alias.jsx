@@ -2,11 +2,12 @@
     Entity = require('../entity/entity.jsx'),
     AdminRepo = require('../../../repositories/admin/adminRepo'),
     AliasRepo = require('../../../repositories/admin/aliasRepo'),
+    TeamRepo = require('../../../repositories/admin/teamRepo'),
     _clone = require('lodash/lang/clone'),
     ValInput = require('../../common/form/validationInput.jsx');
 
 module.exports = Entity({
-    repositories: [AdminRepo, AliasRepo],
+    repositories: [AdminRepo, AliasRepo, TeamRepo],
     entityType: 'alias',
     header: 'Team alias',
     getEntity: function(valgroup){
@@ -23,11 +24,14 @@ module.exports = Entity({
     componentDidMount: function(){
         this.setState({ fetched: true });
     },
-    getSelectItems: function(state){
-        return state.repo[this.entityType].map((e) => ({ value: e.id, text: e.alias, sortBy: e.alias, selected: !!state.selected && e.id === state.selected.id }));
+    getSelectItems: function (state) {
+        if (!state.repo.admin.team) {
+            return [];
+        }
+        return state.repo[this.entityType].filter((a) => a.teamId === state.repo.admin.team.id).map((e) => ({ value: e.id, text: e.alias, sortBy: e.alias, selected: !!state.selected && e.id === state.selected.id }));
     },
-    getView: function(state, props){
-        return { noTeam: !state.repo.admin.team, empty: state.repo.alias.length === 0 };
+    getView: function (state, props) {
+        return { noTeam: !state.repo.admin.team, empty: !!state.repo.admin.team && state.repo[this.entityType].filter((a) => a.teamId === state.repo.admin.team.id).length === 0 };
     },
     getInputs: function (model, state, props, q) {
         return [

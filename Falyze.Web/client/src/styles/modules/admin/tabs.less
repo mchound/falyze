@@ -1,0 +1,44 @@
+﻿[data-am-tabs]{
+
+    .selectors{
+        list-style: none;
+        cursor: pointer;
+    }
+
+    .selector{
+        display: inline-block;
+        padding: 15px;
+        background-color: #eaeaea;
+        border: 1px solid #e3e3e3;
+        border-bottom-color: #eaeaea;
+    }
+
+    .selector.selected{
+        border: 1px solid #ccc;
+        background-color: #eee;
+        border-bottom: none;
+        position: relative;
+        padding-top: 20px;
+        &:after{
+            content: " ";
+            position: absolute;
+            display: block;
+            height: 1px;
+            width: 100%;
+            background-color: #eee;
+            bottom: -2px;
+            left: 0;
+        }
+    }
+
+    .selector.disabled{
+        color: #ccc;
+        cursor: default;
+    }
+
+    .tab-content{
+        padding: 15px;
+        border: 1px solid #ccc;
+        min-height: 150px;
+    }
+}

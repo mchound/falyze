@@ -10,6 +10,9 @@ var attachRepos = function () {
             if (this.isMounted()) {
                 this.state.repo[repo.alias] = repo.getModel();
                 this.setState(this.state);
+                if (!!this.onRepoUpdate) {
+                    this.onRepoUpdate.call(this, repo, newVal, oldVal);
+                }
             }
         }.bind(this);
         repo.observe(cb);
@@ -60,14 +63,6 @@ var internalRender = function () {
 
         return viewResult;
     }
-
-    //if (!!this.action) {
-    //    viewModel = this.action(this.state, this.props);
-    //}
-
-    //if (this.view.constructor === Function) {
-    //    return this.view.call(this, viewModel, this.state, this.props, viewHelper);
-    //}
 }
 
 var initializeRepos = function () {

@@ -19,13 +19,10 @@ namespace Falyze.Web.Models
 
     public class RawMatch
     {
+        public DateTime Date { get; set; }
         public Guid HomeTeamId { get; set; }
         public Guid AwayTeamId { get; set; }
         public byte HomeTeamGoals { get; set; }
         public byte AwayTeamGoals { get; set; }
-        public DateTime Date { get; set; }
-        public Guid CountryId { get; set; }
-        public Guid LeagueId { get; set; }
-        public int StartYear { get; set; }
     }
 }

@@ -15,7 +15,7 @@ function observe(observable, callback) {
 function mute(observable, callback) {
     if (observable.constructor === Object) {
         for (var p in observable) {
-            observe(observable[p], callback);
+            mute(observable[p], callback);
         }
     }
     else if (observable.constructor === Observable) {

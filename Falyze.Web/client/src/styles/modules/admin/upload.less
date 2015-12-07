@@ -1,23 +1,66 @@
 ﻿[data-am-upload] {
 
     .drop-zone {
-        width: 400px;
-        height: 200px;
-        border: 1px dashed #888;
-        display: table;
+        position: relative;
+    }
 
-        &.drag-over {
-            
-            .msg {
-                background-color: #e5e5e5;
-                opacity: 0.3;
-            }
+    .drop-message-area{
+        display: none;
+        position:absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: rgba(238,238,238, 0.8);
+        border: 1px dashed #bbb;
+    }
+
+    .drag-over{
+        .drop-message-area{
+            display: block;
+            z-index: 1;
+        }
+        .drop-message{
+            display: table-cell;
+            width: 100%;
+            height: 100%;
+            vertical-align: middle;
         }
     }
 
-    .msg {
-        display: table-cell;
+    .drop-message {
+        display: none;
         vertical-align: middle;
         text-align: center;
+    }
+
+    .matches{
+        
+        .alert{
+            background-color: #a94442;
+            color: #ebccd1;
+        }
+
+        td,th{
+            border: 1px solid #ccc;
+            padding: 5px;
+            text-align: left;
+        }
+
+        .away-team,
+        .home-team{
+            padding: 5px 15px;
+        }
+
+        .result{
+            text-align: center;
+        }
+
+        .home-team{
+            text-align: right;
+        }
+
+        .note{
+            width: 100px;
+        }
     }
 }

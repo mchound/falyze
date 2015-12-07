@@ -7,14 +7,14 @@ module.exports = Lean.createServerRepository({
         endpoint: '/api/admin/alias'
     },
     initialize: function () {
-        this.subscribeTo(AdminRepo.model.team, this.onSelectTeam);
+        this.subscribeTo(AdminRepo.model.country, this.onSelectCountry);
     },
-    onSelectTeam: function (team) {
-        if (!team) {
+    onSelectCountry: function (country) {
+        if (!country) {
             this.model.set({});
         }
         else {
-            this.server.get('/' + team.id);
+            this.server.get('/byCountry/' + country.id);
         }
     }
 });

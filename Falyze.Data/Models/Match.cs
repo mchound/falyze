@@ -75,7 +75,7 @@ namespace Falyze.Data.Models
                 new DataColumn("Date", typeof(DateTime)),
                 new DataColumn("HomeTeamId", typeof(Guid)),
                 new DataColumn("AwayTeamId", typeof(Guid)),
-                new DataColumn("homeGoals", typeof(byte)),
+                new DataColumn("HomeGoals", typeof(byte)),
                 new DataColumn("Awaygoals", typeof(byte))
             };
         }

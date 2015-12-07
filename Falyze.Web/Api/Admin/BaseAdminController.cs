@@ -26,5 +26,11 @@ namespace Falyze.Web.Api.Admin
         {
             return Request.CreateResponse<string>(status, errorMessage);
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+            base.Dispose(disposing);
+        }
     }
 }

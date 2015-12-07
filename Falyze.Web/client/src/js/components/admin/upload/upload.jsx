@@ -1,9 +1,17 @@
 ﻿var React = require('react'),
     Lean = require('../../../lean.v2/lean'),
+    
+    UploadRepo = require('../../../repositories/admin/uploadRepo'),
+
+    Tabs = require('../../common/tabs/tabs.jsx'),
+    Matches = require('./matches.jsx'),
+    Validation = require('./validation.jsx'),
+    Teams = require('./teams.jsx'),
 
     MatchUtils = require('../utils/matchUtils');
 
 module.exports = Lean.createComponent({
+    displayName: 'Upload',
     getInitialState: function(){
         return {
             dragOver: false
@@ -24,12 +32,13 @@ module.exports = Lean.createComponent({
         this.setState({ dragOver: false });
         var fr = new FileReader();
         fr.onload = function (e) {
-            console.log(MatchUtils.parseFromXls(e.target.result));
+            var matches = MatchUtils.parseFromXls(e.target.result);
+            UploadRepo.model.matches.set(matches);
         };
         fr.readAsBinaryString(e.dataTransfer.files[0]);
     },
-    onWorkerDone: function(matches){
-        console.log(matches);
+    onRepoUpdate: function(){
+        console.log(this.refs.validation.valdiationResult);
     },
     controller: function (state, props) {
         return {
@@ -39,8 +48,24 @@ module.exports = Lean.createComponent({
     index: function (model, state, props, q) {
         return (
             <div data-am-upload>
-                <div className={model.dropZoneClass} onDragOver={this.onDragOver} onDragLeave={this.onDragLeave} onDrop={this.onDrop}>
-                    <p className="msg">Drop matches here</p>
+                <div className={model.dropZoneClass} onDragOver={this.onDragOver}>
+                    <div className="drop-message-area">
+                        <div className="table stretch-v stretch-h">
+                            <div className="drop-message" onDragOver={this.onDragOver} onDragLeave={this.onDragLeave} onDrop={this.onDrop}>
+                                <p>Drop matches here...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="tab-area">
+                        <Tabs tabNames={['Matches', 'Teams' , 'Validation', 'Save' ]}>
+                            <Matches tabName="Matches" />
+                            <Teams tabName="Teams" />
+                            <Validation tabName="Validation" />
+                            <div tabName="Save" disabled="true">
+                                <p>Hej</p>
+                            </div>
+                        </Tabs>
+                    </div>
                 </div>
             </div>  
         );

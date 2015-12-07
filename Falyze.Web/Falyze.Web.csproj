@@ -122,6 +122,7 @@
   <ItemGroup>
     <Compile Include="Api\Admin\BaseAdminController.cs" />
     <Compile Include="Api\Admin\AliasController.cs" />
+    <Compile Include="Api\Admin\MatchController.cs" />
     <Compile Include="Api\Admin\TeamController.cs" />
     <Compile Include="Api\Admin\SeasonController.cs" />
     <Compile Include="Api\Admin\LeagueController.cs" />
@@ -156,7 +157,6 @@
     <Content Include="client\src\js\actions\Actions.js" />
     <Content Include="client\src\js\actions\admin.js" />
     <Content Include="client\src\js\application.js" />
-    <Content Include="client\src\js\components\admin\upload\parseMatchWorker.js" />
     <Content Include="client\src\js\components\admin\utils\matchUtils.js" />
     <Content Include="client\src\js\components\admin\utils\msgUtils.js" />
     <Content Include="client\src\js\domConnectors\connectors.js" />
@@ -180,6 +180,7 @@
     <Content Include="client\src\js\lean\Store\serverStore.js" />
     <Content Include="client\src\js\lean\Store\store.js" />
     <Content Include="client\src\js\lean\viewHelper.js" />
+    <Content Include="client\src\js\repositories\admin\uploadRepo.js" />
     <Content Include="client\src\js\repositories\admin\adminRepo.js" />
     <Content Include="client\src\js\repositories\admin\aliasRepo.js" />
     <Content Include="client\src\js\repositories\admin\teamRepo.js" />
@@ -243,7 +244,14 @@
     <Content Include="client\src\js\components\admin\team\team.jsx" />
     <Content Include="client\src\js\components\admin\alias\alias.jsx" />
     <Content Include="client\src\js\components\admin\upload\upload.jsx" />
+    <Content Include="client\src\js\components\admin\upload\matches.jsx" />
+    <Content Include="client\src\js\components\admin\upload\validation.jsx" />
+    <Content Include="client\src\js\components\admin\upload\teams.jsx" />
+    <Content Include="client\src\js\components\admin\upload\team.jsx" />
+    <Content Include="client\src\js\components\admin\upload\save.jsx" />
+    <None Include="client\src\styles\modules\admin\tabs.less" />
     <Content Include="client\src\styles\modules\admin\upload.less" />
+    <Content Include="client\src\js\components\common\tabs\tabs.jsx" />
     <None Include="client\src\styles\modules\box.less" />
     <None Include="client\src\styles\modules\admin\form.less" />
     <Content Include="client\src\styles\modules\import\import.less" />
