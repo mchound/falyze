@@ -9,12 +9,12 @@ namespace SnakeMap
 {
     public static class EntityMapper
     {
-        public static IEnumerable<T> MapToEntities<T>(SqlDataReader reader) where T : Table, new()
+        public static IEnumerable<T> Map<T>(SqlDataReader reader) where T : Entity, new()
         {
             while (reader.Read())
             {
                 var instance = new T();
-                instance.MapToEntity(reader);
+                instance.Map(reader);
                 yield return instance;
             }
         }

@@ -1,74 +1,42 @@
-﻿.spinner {
-  margin: 0 auto 5px;
-  width: 70px;
-  text-align: center;
-}
-
-.spinner > div {
-    width: 18px;
-    height: 18px;
-    background-color: #fff;
-    border-radius: 100%;
-    display: inline-block;
-    -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-    -moz-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-    -o-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-    animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-}
-
-.spinner.green > div{
-    background-color: @clr-green;
-}
-
-.spinner .bounce1 {
-    -webkit-animation-delay: -0.32s;
-    -moz-animation-delay: -0.32s;
-    -o-animation-delay: -0.32s;
-    animation-delay: -0.32s;
-}
-
-.spinner .bounce2 {
-    -webkit-animation-delay: -0.16s;
-    -moz-animation-delay: -0.16s;
-    -o-animation-delay: -0.16s;
-    animation-delay: -0.16s;
-}
-
-@-webkit-keyframes sk-bouncedelay {
-  0%, 80%, 100% { -webkit-transform: scale(0) }
-  40% { -webkit-transform: scale(1.0) }
-}
-
-@-moz-keyframes sk-bouncedelay {
-    0%, 80%, 100% {
-        -webkit-transform: scale(0);
-        -moz-transform: scale(0);
-        -ms-transform: scale(0);
-        -o-transform: scale(0);
-        transform: scale(0);
+﻿[data-am-loader] {
+    
+    .loading-bar {
+        display: inline-block;
+        width: 4px;
+        height: 18px;
+        border-radius: 4px;
+        background-color: #929599;
+        animation: loading 800ms ease-in-out infinite;
+        margin: 0 1px;
     }
-    40% {
-        -webkit-transform: scale(1.0);
-        -moz-transform: scale(1.0);
-        -ms-transform: scale(1.0);
-        -o-transform: scale(1.0);
-        transform: scale(1.0);
-    }
-}
 
-@keyframes sk-bouncedelay {
-    0%, 80%, 100% {
-        -webkit-transform: scale(0);
-        -moz-transform: scale(0);
-        -ms-transform: scale(0);
-        -o-transform: scale(0);
-        transform: scale(0);
+    .loading-bar:nth-child(1) {
+        animation-delay: 0;
     }
-    40% {
-        -webkit-transform: scale(1.0);
-        -moz-transform: scale(1.0);
-        -ms-transform: scale(1.0);
-        -o-transform: scale(1.0);
-        transform: scale(1.0);
+
+    .loading-bar:nth-child(2) {
+        animation-delay: 0.09s;
+    }
+
+    .loading-bar:nth-child(3) {
+        animation-delay: .18s;
+    }
+
+    .loading-bar:nth-child(4) {
+        animation-delay: .27s;
+    }
+
+    @keyframes loading {
+        0% {
+            transform: scale(1);
+        }
+
+        20% {
+            transform: scale(1, 2.2);
+        }
+
+        40% {
+            transform: scale(1);
+        }
     }
 }

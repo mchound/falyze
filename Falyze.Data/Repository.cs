@@ -17,7 +17,7 @@ namespace Falyze.Data
             _database = database;
         }
 
-        public IEnumerable<T> Get<T>() where T : Table, new()
+        public IEnumerable<T> Get<T>() where T : Entity, new()
         {
             return _database.Get<T>();
         }
@@ -48,7 +48,7 @@ namespace Falyze.Data
 
         public IEnumerable<Match> GetMatches(int seasonId, int leagueId)
         {
-            return _database.GetWhere<Match>(string.Format("SeasonId={0} AND LeagueId={1}", seasonId, leagueId));
+            return _database.Where<Match>(string.Format("SeasonId={0} AND LeagueId={1}", seasonId, leagueId));
         }
     }
 }

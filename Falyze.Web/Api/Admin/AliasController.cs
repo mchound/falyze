@@ -17,7 +17,7 @@ namespace Falyze.Web.Api.Admin
         {
             try
             {
-                var aliases = db.GetWhere<TeamAlias>(string.Format("TeamId = '{0}'", teamId));
+                var aliases = db.Where<TeamAlias>(string.Format("TeamId = '{0}'", teamId));
                 return Success<IEnumerable<TeamAlias>>(aliases);
             }
             catch (Exception ex)
@@ -36,7 +36,7 @@ namespace Falyze.Web.Api.Admin
 
             try
             {
-                var aliases = db.Get<TeamAlias>(string.Format(sql, countryId));
+                var aliases = db.Map<TeamAlias>(string.Format(sql, countryId));
                 return Success<IEnumerable<TeamAlias>>(aliases);
             }
             catch (Exception ex)

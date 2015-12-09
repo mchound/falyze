@@ -18,7 +18,7 @@ module.exports = Entity({
     updateEntity: function(original, valgroup){
         var country = _clone(original);
         country.name = valgroup.refs.inpName.get();
-        return season;
+        return country;
     },
     onEntityChangeOverride: function(country){
         this.repo.admin.model.league.set(null);

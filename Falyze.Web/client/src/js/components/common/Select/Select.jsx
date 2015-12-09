@@ -1,7 +1,6 @@
 ﻿var React = require('react'),
-    Lean = require('../../../lean/lean'),
 
-    __find = require('lodash/collection/find'),
+    _find = require('lodash/collection/find'),
 
     SelectItem = require('./SelectItem.jsx');
 
@@ -30,7 +29,7 @@ function getSelectedText(props, items) {
 
 }
 
-module.exports = Lean.createController({
+module.exports = React.createClass({
     displayName: 'Select',
     getInitialState: function () {
         return {
@@ -47,59 +46,87 @@ module.exports = Lean.createController({
     onItemClick: function (clickedItem) {
         var showItems = true;
         if (!this.props.multiple) {
-            var selected = __find(this.state.items, (item) => !!item.selected && item.value !== clickedItem.value);
+            var selected = _find(this.state.items, (item) => !!item.selected && item.value !== clickedItem.value);
             !!selected ? selected.selected = false : false;
             showItems = false;
         }
 
-        var item = __find(this.state.items, (item) => item.value === clickedItem.value);
+        var item = _find(this.state.items, (item) => item.value === clickedItem.value);
         item.selected = !item.selected;
 
         this.setState({
             items: this.state.items,
             showItems: showItems
         });
-        this.props.onChange(
-            this.state.items.filter((item) => item.selected),
-            this.state.items.filter((item) => !item.selected),
-            this.state.items
-        );
+
+        if(!!this.props.onChange){
+            this.props.onChange(
+                this.state.items.filter((item) => item.selected),
+                this.state.items.filter((item) => !item.selected),
+                this.state.items
+            );
+        }
     },
     onClick: function () {
         if (this.props.disabled) return;
         if (this.props.notifyElementSelector) {
             var node = document.querySelector(this.props.notifyElementSelector);
-            if(!!node){
+            if (!!node) {
                 node.setAttribute('data-select-status', !this.state.showItems ? 'open' : 'closed');
             }
         }
-        this.setState({ showItems: !this.state.showItems });
+        var showItems = !this.state.showItems;
+
+        if(!showItems && !!this.props.onClose){
+            this.props.onClose(
+                this.state.items.filter((item) => item.selected),
+                this.state.items.filter((item) => !item.selected),
+                this.state.items
+            );
+        }
+
+        this.setState({ showItems: showItems });
     },
     action: function (state, props) {
-        
+
         return {
             items: state.items.sort(sorter),
-            attr: {disabled: props.disabled, open: state.showItems}
+            attr: { disabled: props.disabled, open: state.showItems }
         }
     },
-    view: function (model, state, props, q) {
+    render: function (model, state, props, q) {
+        var items = this.state.items.sort(sorter),
+            attr = [],
+            content = null,
+            closeArea = null,
+            itemsContainer = null;
+
+        if (this.props.disabled) attr.push('disabled');
+
+        if (this.state.showItems) {
+            attr.push('open');
+
+            closeArea = ( <div className="close-area" onClick={this.onClick}></div> );
+
+            itemsContainer = (
+                <div className="items-container">
+                    <ul className="items">
+                        {items.map((i) => {
+                            return (<SelectItem item={i} key={i.value} onClick={this.onItemClick} />)
+                            }.bind(this))}
+                    </ul>
+                </div>
+            );
+        }
+
         return (
-            <div data-am-select={q.toDelimited(model.attr)} className={props.className}>
+            <div data-am-select={attr.join(' ')} className={this.props.className}>
                 <div className="select" onClick={this.onClick}>
-                    {getSelectedText(props, this.state.items)}
+                    {getSelectedText(this.props, this.state.items)}
                 </div>
 
-                {q.if(state.showItems, (
-                    <div className="close-area" onClick={this.onClick}></div>
-                ))}
-
-                {q.if(state.showItems, (
-                    <div className="items-container">
-                        <ul className="items">
-                            {model.items.map(q.itemMapper(SelectItem, 'value', {'onClick': this.onItemClick}))}
-                        </ul>
-                    </div>
-                ))}
+                {closeArea}
+                {itemsContainer}
 
             </div>
         );

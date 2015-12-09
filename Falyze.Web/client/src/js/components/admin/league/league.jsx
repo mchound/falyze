@@ -18,9 +18,9 @@ module.exports = Entity({
     },
     updateEntity: function(original, valgroup){
         var league = _clone(original);
-        season.name = valgroup.refs.inpName.get();
-        season.level = valgroup.refs.inpLevel.get();
-        return season;
+        league.name = valgroup.refs.inpName.get();
+        league.level = valgroup.refs.inpLevel.get();
+        return league;
     },
     componentDidMount: function(){
         this.setState({ fetched: true });
@@ -31,7 +31,7 @@ module.exports = Entity({
     getInputs: function (model, state, props, q) {
         return [
             (<ValInput key="1" ref="inpName" label="Name" value={state.isEditing ? model.selected.name : null} cssClass="group mb" required={true} errorMessage="Name is required" />),
-            (<ValInput key="2" ref="inpLevel" label="Level" value={state.isEditing ? model.selected.startYear : null} cssClass="group mb" required={true} pattern={/^\d$/g} errorMessage="Wrong format, level must be a number" />  )
+            (<ValInput key="2" ref="inpLevel" label="Level" value={state.isEditing ? model.selected.level : null} cssClass="group mb" required={true} pattern={/^\d$/g} errorMessage="Wrong format, level must be a number" />  )
         ];
     },
     noCountry: function () {

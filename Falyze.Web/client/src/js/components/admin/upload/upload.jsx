@@ -7,6 +7,7 @@
     Matches = require('./matches.jsx'),
     Validation = require('./validation.jsx'),
     Teams = require('./teams.jsx'),
+    AddMatch = require('./addMatch.jsx'),
 
     MatchUtils = require('../utils/matchUtils');
 
@@ -57,13 +58,11 @@ module.exports = Lean.createComponent({
                         </div>
                     </div>
                     <div className="tab-area">
-                        <Tabs tabNames={['Matches', 'Teams' , 'Validation', 'Save' ]}>
+                        <Tabs tabNames={['Matches', 'Teams' , 'Validation', 'Add' ]}>
                             <Matches tabName="Matches" />
                             <Teams tabName="Teams" />
                             <Validation tabName="Validation" />
-                            <div tabName="Save" disabled="true">
-                                <p>Hej</p>
-                            </div>
+                            <AddMatch tabName="Add" />
                         </Tabs>
                     </div>
                 </div>

@@ -68,7 +68,7 @@ module.exports = {
             return ['No matches to validate'];
         }
         var matches = allMatches.filter((m) => m.startYear === season),
-            teamNames = _uniq(matches, (m) => m.homeTeam).map((m) => m.homeTeam.toLowerCase()),
+            teamNames = _uniq(matches, (m) => m.homeTeam.toLowerCase()).map((m) => m.homeTeam.toLowerCase()),
             teamMatches = {},
             validationResults = [];
 

@@ -2,7 +2,8 @@
     component = require('./component'),
     repository = require('./repository/repository'),
     serverRepository = require('./repository/serverRepository'),
-    observable = require('./observable');
+    observable = require('./observable'),
+    injector = require('./injector');
 
 var lean = {
     createAction: function (aliases) {
@@ -31,7 +32,8 @@ var lean = {
     },
     observable: function (initial) {
         return new observable(initial);
-    }
+    },
+    inject: injector
 };
 
 module.exports = lean;

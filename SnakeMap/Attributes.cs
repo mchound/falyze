@@ -7,20 +7,21 @@ using System.Threading.Tasks;
 namespace SnakeMap
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-    public class ConnectionAttribute : Attribute
+    public class DatabaseAttribute : Attribute
     {
         public string ConnectionStringName { get; set; }
+        public string ConnectionString { get; set; }
     }
 
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public class TableAttribute : Attribute
     {
-        public string Name { get; set; }
+        public string TableName { get; set; }
     }
 
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
     public class PrimaryKeyAttribute : Attribute
     {
-        public string Name { get; set; }
+        public string PrimaryKey { get; set; }
     }
 }

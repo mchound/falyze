@@ -14,7 +14,7 @@ namespace Falyze.Statistics
     {
         IEnumerable<Match> GetMatches(int seasonId, int leagueId);
         IEnumerable<Match> GetMatches(IEnumerable<int> seasonIds, IEnumerable<int> leagueIds);
-        IEnumerable<T> Get<T>() where T : Table, new();
+        IEnumerable<T> Get<T>() where T : Entity, new();
         IEnumerable<Country> GetCountries();
         IEnumerable<Season> GetSeasons();
         IEnumerable<League> GetLeagues();
@@ -155,7 +155,7 @@ namespace Falyze.Statistics
         //    Team team = this.GetTeams().First(t => t.Id == teamId);
         //    return this.GetMatchesForCountry(team.CountryId).Where(m => m.HomeTeamId == teamId || m.AwayTeamId == teamId).Aggregate((m1, m2) => m1.Date > m2.Date ? m1 : m2);
         //}
-        public IEnumerable<T> Get<T>() where T : Table, new()
+        public IEnumerable<T> Get<T>() where T : Entity, new()
         {
             throw new NotImplementedException();
         }

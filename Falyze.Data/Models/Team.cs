@@ -5,17 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace Falyze.Data.Models
 {
-    [Table(Name = "Teams")]
-    [PrimaryKey(Name = "Id")]
-    public class Team : Entity
+    [Table(TableName = "Teams")]
+    public class Team : BulkWritable
     {
         public Guid CountryId { get; set; }
         public string Name { get; set; }
 
-        public override void MapToEntity(SqlDataReader sqlDataReader)
+        public override void Map(SqlDataReader sqlDataReader)
         {
             this.Id = sqlDataReader.GetGuid(sqlDataReader.GetOrdinal("Id"));
             this.Name = sqlDataReader.GetString(sqlDataReader.GetOrdinal("Name"));
@@ -30,6 +30,16 @@ namespace Falyze.Data.Models
                 { "CountryId", string.Format("'{0}'", this.CountryId.ToString())},
                 { "Name", string.Format("N'{0}'", this.Name)}
             };
+        }
+
+        public override object[] GetColumnValues()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override IEnumerable<DataColumn> GetColumns()
+        {
+            throw new NotImplementedException();
         }
     }
 }

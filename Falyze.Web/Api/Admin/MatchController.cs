@@ -10,7 +10,7 @@ using System.Web.Http;
 namespace Falyze.Web.Api.Admin
 {
     [RoutePrefix("api/admin/match")]
-    public class MatchController : BaseAdminController
+    public class MatchController : BaseApiController
     {
         [Route("{countryId:guid}/{leagueId:guid}/{seasonId:guid}")]
         [HttpPost]
@@ -18,8 +18,9 @@ namespace Falyze.Web.Api.Admin
         {
             try
             {
-                //var teams = db.GetWhere<Team>(string.Format("CountryId = '{0}'", countryId));
-                return Success<int>(10);
+                var converted = matches.Select(m => Converters.Match(m, countryId, leagueId, seasonId));
+                db.Insert<Match>(converted);
+                return Success<int>(converted.Count());
             }
             catch (Exception ex)
             {

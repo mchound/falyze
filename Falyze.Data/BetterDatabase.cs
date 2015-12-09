@@ -7,7 +7,7 @@ using SnakeMap;
 
 namespace Falyze.Data
 {
-    [Connection(ConnectionStringName = "BetterDatabase")]
+    [Database(ConnectionStringName = "BetterDatabase")]
     public class BetterDatabase : Database
     {
     }

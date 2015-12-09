@@ -21,8 +21,8 @@ namespace Falyze.Data.Models
         byte AwayGoals { get; set; }
     }
 
-    [Table(Name = "Matches")]
-    public class Match : Entity, IMatch
+    [Table(TableName = "Matches")]
+    public class Match : BulkWritable
     {
         public string Key { get; set; }
         public DateTime Date { get; set; }
@@ -50,7 +50,7 @@ namespace Falyze.Data.Models
             return fieldValues;
         }
 
-        public override void MapToEntity(SqlDataReader sqlDataReader)
+        public override void Map(SqlDataReader sqlDataReader)
         {
             this.Id = sqlDataReader.GetGuid(sqlDataReader.GetOrdinal("Id"));
             this.Key = sqlDataReader.GetString(sqlDataReader.GetOrdinal("Key"));
@@ -64,7 +64,7 @@ namespace Falyze.Data.Models
             this.AwayGoals = sqlDataReader.GetByte(sqlDataReader.GetOrdinal("AwayGoals"));
         }
 
-        public static IEnumerable<DataColumn> GetDataColumns()
+        public override IEnumerable<DataColumn> GetColumns()
         {
             return new DataColumn[] {
                 new DataColumn("Id", typeof(Guid)),
@@ -98,15 +98,15 @@ namespace Falyze.Data.Models
         }
     }
 
-    [Table(Name = "Matches")]
+    [Table(TableName = "Matches")]
     public class ClientMatch : Match
     {
         public string HomeTeam { get; set; }
         public string AwayTeam { get; set; }
 
-        public override void MapToEntity(SqlDataReader sqlDataReader)
+        public override void Map(SqlDataReader sqlDataReader)
         {
-            base.MapToEntity(sqlDataReader);
+            base.Map(sqlDataReader);
             this.HomeTeam = sqlDataReader.GetString(sqlDataReader.GetOrdinal("HomeTeam"));
             this.AwayTeam = sqlDataReader.GetString(sqlDataReader.GetOrdinal("AwayTeam"));
         }

@@ -9,7 +9,7 @@ using System.Web.Http;
 
 namespace Falyze.Web.Api.Admin
 {
-    public abstract class EntityController<T> : BaseAdminController where T : Entity, new()
+    public abstract class EntityController<T> : BaseApiController where T : BulkWritable, new()
     {
         [Route("")]
         [HttpGet]

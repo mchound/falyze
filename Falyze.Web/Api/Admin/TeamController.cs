@@ -17,7 +17,7 @@ namespace Falyze.Web.Api.Admin
         {
             try
             {
-                var teams = db.GetWhere<Team>(string.Format("CountryId = '{0}'", countryId));
+                var teams = db.Where<Team>(string.Format("CountryId = '{0}'", countryId));
                 return Success<IEnumerable<Team>>(teams);
             }
             catch (Exception ex)

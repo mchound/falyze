@@ -4,10 +4,11 @@
     _indexBy = require('lodash/collection/indexBy'),
     Ajax = require('../../utils/ajax');
 
-function _internalAjax(repo, endpoint) {
+function _internalAjax(repo, endpoint, onComplete) {
     var
 
     _onSuccess = function (method, entities) {
+        onComplete.call();
         if (method === 'GET') {
             repo.model.set(_indexBy(entities, 'id'));
         }
@@ -38,6 +39,7 @@ function _internalAjax(repo, endpoint) {
     },
 
     _onError = function (xhr) {
+        onComplete.call();
         if (!!_cbError && _cbError.constructor === Function) {
             _cbError.call(this, xhr);
         }
@@ -98,9 +100,15 @@ function serverRepository(options) {
 
     _settings = {},
 
+    _pendingRequests = 0,
+
     _internalRepository = new repository({
         alias: options.alias, model: new Observable({})
-    });
+    }),
+
+    _onRequestComplete = function () {
+        _pendingRequests--;
+    };
 
     _assign(_settings, options.settings || {});
 
@@ -126,17 +134,25 @@ function serverRepository(options) {
 
     this.server = {
         get: function (url) {
-            return new _internalAjax(_internalRepository, _settings.endpoint).get(url || '');
+            _pendingRequests++;
+            return new _internalAjax(_internalRepository, _settings.endpoint, _onRequestComplete).get(url || '');
         },
         post: function (data, url) {
-            return new _internalAjax(_internalRepository, _settings.endpoint).post(url || '', data);
+            _pendingRequests++;
+            return new _internalAjax(_internalRepository, _settings.endpoint, _onRequestComplete).post(url || '', data);
         },
         put: function (data, url) {
-            return new _internalAjax(_internalRepository, _settings.endpoint).put(url || '', data);
+            _pendingRequests++;
+            return new _internalAjax(_internalRepository, _settings.endpoint, _onRequestComplete).put(url || '', data);
         },
         remove: function (url) {
-            return new _internalAjax(_internalRepository, _settings.endpoint).remove(url || '');
+            _pendingRequests++;
+            return new _internalAjax(_internalRepository, _settings.endpoint, _onRequestComplete).remove(url || '');
         }
+    }
+
+    this.isPending = function () {
+        return _pendingRequests > 0;
     }
 
     if (!!options.initialize && options.initialize.constructor === Function) {

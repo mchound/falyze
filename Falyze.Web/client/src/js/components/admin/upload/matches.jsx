@@ -6,6 +6,7 @@
     Select = require('../../common/Select/Select.jsx'),
 
     MatchUtils = require('../utils/matchUtils'),
+    MsgUtils = require('../utils/msgUtils').messages,
 
     Ajax = require('../../../utils/ajax'),
 
@@ -34,12 +35,15 @@ module.exports = Lean.createComponent({
             homeGoals: m.result.split('-')[0].trim(),
             awayGoals: m.result.split('-')[1].trim()
         }));
+        MsgUtils.add('matches - adding', 'Saving matches', 'add');
         Ajax.post('api/admin/match/' + countryId + '/' + leagueId + '/' + season.id, matches,
             function (resp) {
-                console.log(resp);
+                MsgUtils.remove('matches - adding');
+                MsgUtils.add('matches saved', resp + ' matches added', null, 3000);
             },
             function (xhr) {
-                console.log(xhr);
+                MsgUtils.remove('matches - adding');
+                MsgUtils.add('matches - adding', 'Could not save matches matches: ' + JSON.parse(xhr.response), 'error');
             });
     },
     controller: function (state, props) {

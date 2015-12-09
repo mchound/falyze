@@ -1,88 +1,34 @@
-﻿<div id="splash" data-am-splash>
-    <div class="table stretch-h stretch-v">
-        <div class="table-cell align-middle align-center">
-            <div class="spinner">
-                <div class="bounce1"></div>
-                <div class="bounce2"></div>
-                <div class="bounce3"></div>
-            </div>
-            <span class="message">Loading resources, please wait</span>
-        </div>
+﻿<div data-am-splash>
+    <div data-am-loader>
+        <div class="loading-bar"></div>
+        <div class="loading-bar"></div>
+        <div class="loading-bar"></div>
+        <div class="loading-bar"></div>
     </div>
 </div>
 
-<div data-am-dashboard="main">
-    <div data-am-dashboard="left">
-        <div data-am-filtermenu>
-            <ul class="list">
-                <li class="item"><div data-lean-component="filter-add" data-lean-props='{"title": "Team", "filter": "teamFilter"}'></div></li>
-                <li class="item"><div data-lean-component="filter-add" data-lean-props='{"title": "Position", "filter": "positionFilter"}'></div></li>
-                <li class="item"><div data-lean-component="filter-add" data-lean-props='{"title": "Points", "filter": "pointsFilter"}'></div></li>
-                <li class="item"><div data-lean-component="filter-add" data-lean-props='{"title": "Wins", "filter": "winsFilter"}'></div></li>
-                <li class="item"><div data-lean-component="filter-add" data-lean-props='{"title": "Draws", "filter": "drawsFilter"}'></div></li>
-                <li class="item"><div data-lean-component="filter-add" data-lean-props='{"title": "Losses", "filter": "lossesFilter"}'></div></li>
-                <li class="item"><div data-lean-component="filter-add" data-lean-props='{"title": "Rounds", "filter": "roundsFilter"}'></div></li>
-                <li class="item"><div data-lean-component="filter-add" data-lean-props='{"title": "Goals For", "filter": "goalsForFilter"}'></div></li>
-                <li class="item"><div data-lean-component="filter-add" data-lean-props='{"title": "Goals Against", "filter": "goalsAgainstFilter"}'></div></li>
-                <li class="item"><div data-lean-component="filter-add" data-lean-props='{"title": "Goal Diff", "filter": "goalDiffFilter"}'></div></li>
-            </ul>
+<div data-am-dashboard>
+
+    <div data-am-panel="left">
+        <div class="logo-container">
+            <h1>lyze</h1>
         </div>
     </div>
-    <div data-am-dashboard="right">
-        
-        <div class="container-fluid">
-            <div class="row mb">
-                <div class="col-md-4">
-                    <div data-lean-component="country" class="mb"></div>
-                    <div data-lean-component="league" class="mb"></div>
-                    <div data-lean-component="season" class="mb"></div>
-                    <div data-lean-component="prerequisite-confirm"></div>
-                </div>
-                <div class="col-md-16">
-                    <div data-am-teamstats data-lean-dom-connector="teamstat">
-                        <div id="message" class="table stretch-h stretch-v">
-                            <p class="table-cell align-middle align-center large">Select matches to be able to load stats for teams</p>
-                        </div>
-                        <div data-lean-component="team-selector" class="mb"></div>
-                        <div class="cols">
-                            <div class="col left"><div data-am-teamstat data-lean-component="team-stat" data-lean-props='{"team": "team1"}'></div></div>
-                            <div class="col right"><div data-am-teamstat data-lean-component="team-stat" data-lean-props='{"team": "team2"}'></div></div>
-                        </div>
-                        <div data-lean-component="filter-populate" class="align-center mb"></div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div data-am-shout="turquoise tall" class="mb">
-                        <div data-lean-component="match-count" class="mb middle-content"></div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="row mb">
-                <div class="col-md-12"><h2>Team 1</h2></div>
-                <div class="col-md-12"><h2 class="right">Team 2</h2></div>
-            </div>
-            
-            <div data-am-filterlist>
-                @Html.Partial("Filters/_Filter", new Falyze.Web.Models.Filter { FilterName = "teamFilter", Title = "Team filter" })
-                @Html.Partial("Filters/_Filter", new Falyze.Web.Models.Filter { FilterName = "pointsFilter", Title = "Points filter" })
-                @Html.Partial("Filters/_Filter", new Falyze.Web.Models.Filter { FilterName = "winsFilter", Title = "Wins filter" })
-                @Html.Partial("Filters/_Filter", new Falyze.Web.Models.Filter { FilterName = "drawsFilter", Title = "Draws filter" })
-                @Html.Partial("Filters/_Filter", new Falyze.Web.Models.Filter { FilterName = "lossesFilter", Title = "Losses filter" })
-                @Html.Partial("Filters/_Filter", new Falyze.Web.Models.Filter { FilterName = "roundsFilter", Title = "Round filter" })
-                @Html.Partial("Filters/_Filter", new Falyze.Web.Models.Filter { FilterName = "positionFilter", Title = "Position filter" })
-                @Html.Partial("Filters/_Filter", new Falyze.Web.Models.Filter { FilterName = "goalsForFilter", Title = "Goals for filter" })
-                @Html.Partial("Filters/_Filter", new Falyze.Web.Models.Filter { FilterName = "goalsAgainstFilter", Title = "Goals against filter" })
-                @Html.Partial("Filters/_Filter", new Falyze.Web.Models.Filter { FilterName = "goalDiffFilter", Title = "Goal diff filter" })
-            </div>
+    <div data-am-panel="right">
+        <div data-am-topbar></div>
 
-            <div class="row">
-                <div class="col-md-8 col-md-offset-8">
-                    <div data-lean-component="filter-confirm"></div>
-                </div>
-            </div>
+        <div data-am-workarea>
+
+            <div data-lean-component="preselection" data-am-preselection></div>
 
         </div>
-          
+
     </div>
+
 </div>
+
+@section Scripts
+{
+    <script>views.dashboard.apply();</script>
+}
