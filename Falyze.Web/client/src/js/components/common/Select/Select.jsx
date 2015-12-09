@@ -69,13 +69,14 @@ module.exports = React.createClass({
     },
     onClick: function () {
         if (this.props.disabled) return;
+        var showItems = !this.state.showItems,
+            itemContainerPlacement;
         if (this.props.notifyElementSelector) {
             var node = document.querySelector(this.props.notifyElementSelector);
             if (!!node) {
                 node.setAttribute('data-select-status', !this.state.showItems ? 'open' : 'closed');
             }
         }
-        var showItems = !this.state.showItems;
 
         if(!showItems && !!this.props.onClose){
             this.props.onClose(
@@ -84,8 +85,16 @@ module.exports = React.createClass({
                 this.state.items
             );
         }
+        else if(!!showItems && this.props.fixedStyle){
+            var selectClientRect = this.refs.select.getDOMNode().getBoundingClientRect();
+            itemContainerPlacement = {
+                left: selectClientRect.left,
+                top: selectClientRect.top + selectClientRect.height,
+                width: selectClientRect.width
+            };
+        }
 
-        this.setState({ showItems: showItems });
+        this.setState({ showItems: showItems, itemContainerPlacement: itemContainerPlacement });
     },
     action: function (state, props) {
 
@@ -108,8 +117,16 @@ module.exports = React.createClass({
 
             closeArea = ( <div className="close-area" onClick={this.onClick}></div> );
 
-            itemsContainer = (
-                <div className="items-container">
+            var containerStyle = !this.props.fixedStyle ? null : {
+                position: 'fixed', 
+                left: this.state.itemContainerPlacement.left + 'px', 
+                top: this.state.itemContainerPlacement.top + 'px',
+                width: this.state.itemContainerPlacement.width,
+                minWidth: 0
+            };
+
+        itemsContainer = (
+            <div className="items-container" style={containerStyle}>
                     <ul className="items">
                         {items.map((i) => {
                             return (<SelectItem item={i} key={i.value} onClick={this.onItemClick} />)
@@ -121,7 +138,7 @@ module.exports = React.createClass({
 
         return (
             <div data-am-select={attr.join(' ')} className={this.props.className}>
-                <div className="select" onClick={this.onClick}>
+                <div className="select" onClick={this.onClick} ref="select">
                     {getSelectedText(this.props, this.state.items)}
                 </div>
 

@@ -8,13 +8,5 @@ module.exports = Lean.createRepository({
         season: Lean.observable(null),
         team: Lean.observable(null),
         alias: Lean.observable(null)
-    }//,
-    //initialize: function () {
-    //    this.subscribeTo(this.model.country, this.onSelectCountry);
-    //},
-    //onSelectCountry: function () {
-    //    this.model.league.set(null);
-    //    this.model.team.set(null);
-    //    this.model.alias.set(null);
-    //}
+    }
 });

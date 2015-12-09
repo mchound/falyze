@@ -27,19 +27,20 @@ module.exports = Lean.createComponent({
         else {
             country = this.state.repo.country.find((c) => c.id === selected[0].value);
         }
-        this.setState({ country: country });
+        this.setState({ country: country, leagues: [], seasons: [] });
     },
     onLeagueSelect: function (selected) {
         if (!selected) {
-            this.setState({ leagues: [] });
+            this.setState({ leagues: [], seasons: [] });
         }
         else {
-            this.setState({ leagues: selected });
+            this.setState({ leagues: selected, seasons: [] });
         }
     },
-    onLeaguesConfirm: function(){
-        this.repo.season.server.get('/byLeagues/?leagues=' + this.state.leagues.map((l) => l.value).join(';'));
-        this.refs.gallery.goTo(2);
+    onLeaguesConfirm: function () {
+        this.repo.season.server.get('/byLeagues/?leagues=' + this.state.leagues.map((l) => l.value).join(';')).then(function () {
+            this.refs.gallery.goTo(2);
+        }.bind(this))
         this.forceUpdate();
     },
     onSeasonSelect: function (selected) {
@@ -50,7 +51,7 @@ module.exports = Lean.createComponent({
             this.setState({ seasons: selected });
         }
     },
-    onSeasonsConfirm: function(){
+    onSeasonsConfirm: function () {
 
     },
     goTo: function (slide) {
@@ -60,54 +61,65 @@ module.exports = Lean.createComponent({
         return {
             countries: state.repo.country.map((c) => ({ value: c.id, text: c.name, selected: !!state.country && state.country.id === c.id })),
             leagues: state.repo.league.filter((l) => !!state.country && l.countryId === state.country.id).map((l) => ({ sortBy: l.level, value: l.id, text: l.name, selected: !!state.leagues.find((l2) => l2.value === l.id) })),
-            pendingSeasons: this.repo.season.isPending(),
+            seasonsPending: this.repo.season.isPending(),
             seasons: state.repo.season.map((s) => ({ value: s.id, text: s.name, sortBy: -s.startYear, selected: state.seasons.find((s2) => s2.value === s.id) }))
         };
     },
     index: function (model, state, props, q) {
         return (
             <div className="wrapper">
-                <p className="mb-XXL size-up">Set your prerequistes. Select the country, leagues and seasons to apply filters on.</p>
+                <div data-am-shout="round" className="icon-header mb-XXL">
+                    <i className="icon-sliders"></i>
+                </div>
                 <Gallery ref="gallery">
                     <div className="slide">
+                        <p className="mb-XXL size-up">Set your prerequistes. Select the country, leagues and seasons to apply filters on.</p>
                         <div className="mb">
-                            <Select items={model.countries} defaultText="Select country" onChange={this.onCountrySelect} />
+                            <Select items={model.countries} defaultText="Select country" onChange={this.onCountrySelect} fixedStyle={true} />
                         </div>
-                        <button className="btn-continue" disabled={!state.country} onClick={this.goTo.bind(this, 1)} data-am-button="green stretch">Continue</button>
+                        <button className="btn-continue" disabled={!state.country} onClick={this.goTo.bind(this, 1)} data-am-button="green stretch">Continue <i className="icon-right-open-big right"></i></button>
                     </div>
 
                     <div className="slide">
-                        <div className="mb">
-                            <button data-am-button="link" onClick={this.goTo.bind(this, 0)}><i className="icon-left-open-big"></i>Back to country selection</button>
-                        </div>
-                        <div className="mb">
-                            <Select items={model.leagues} multiple={true} defaultText="Select leagues" onClose={this.onLeagueSelect} />
-                        </div>
-                        <button className="btn-continue" disabled={!state.leagues.length} onClick={this.onLeaguesConfirm} data-am-button="green stretch">Continue</button>
-                    </div>
-
-                    <div className="slide">
-                        <div className="mb">
-                            <button data-am-button="link" onClick={this.goTo.bind(this, 1)}><i className="icon-left-open-big"></i>Back to league selection</button>
-                        </div>
-                        {q.if(model.pendingSeasons, (
-                            <div className="mb">
-                                <Spinner />
-                                <p className="mb-XXL">Loading available seasons for selected leagues</p>
-                            </div>
-                        ))}
-                        {q.if(!model.pendingSeasons, (
+                        <p className="mb-XXL size-up">Select leagues</p>
+                        {q.if(!model.seasonsPending, (
                             <div>
                                 <div className="mb">
-                                    <Select items={model.seasons} multiple={true} defaultText="Select seasons" showCount={true} entityPluralName="seasons" onChange={this.onSeasonSelect} />
+                                    <Select items={model.leagues} multiple={true} defaultText="Select leagues" onClose={this.onLeagueSelect} fixedStyle={true} />
                                 </div>
-                                <div>
-                                    <button className="btn-continue" disabled={!state.seasons.length} onClick={this.onSeasonsConfirm} data-am-button="green stretch">Confirm</button>
+                                <div className="mb">
+                                    <button className="btn-continue" disabled={!state.leagues.length} onClick={this.onLeaguesConfirm} data-am-button="green stretch">
+                                        Continue <i className="icon-right-open-big right"></i>
+                                    </button>
                                 </div>
+                                <button data-am-button="link" onClick={this.goTo.bind(this, 0)}><i className="icon-left-open-big"></i>Back to country selection</button>
                             </div>
+                        ))}
+                        {q.if(model.seasonsPending, (
+                        <div>
+                            <div className="mb">
+                                <Spinner />
+                            </div>
+                            <p>
+                                Loading seasons, please wait...
+                            </p>
+                        </div>
+
                         ))}
                     </div>
 
+                    <div className="slide">
+                        <p className="mb-XXL size-up">Select seasons</p>
+                        <div>
+                            <div className="mb">
+                                <Select items={model.seasons} multiple={true} defaultText="Select seasons" showCount={true} entityPluralName="seasons" onChange={this.onSeasonSelect} fixedStyle={true} />
+                            </div>
+                            <div className="mb">
+                                <button className="btn-continue" disabled={!state.seasons.length} onClick={this.onSeasonsConfirm} data-am-button="green stretch"><i className="icon-check"></i>Confirm</button>
+                            </div>
+                            <button data-am-button="link" onClick={this.goTo.bind(this, 1)}><i className="icon-left-open-big"></i>Back to league selection</button>
+                        </div>
+                    </div>
                 </Gallery>
             </div>
         );
