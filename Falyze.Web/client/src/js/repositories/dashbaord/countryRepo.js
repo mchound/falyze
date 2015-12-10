@@ -6,6 +6,6 @@ module.exports = Lean.createServerRepository({
         endpoint: '/api/dashboard/country'
     },
     initialize: function () {
-        this.server.get();
+        
     }
 });

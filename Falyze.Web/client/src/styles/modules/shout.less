@@ -1,13 +1,46 @@
 ﻿[data-am-shout]{
+    background-color: @clr-header-bg-dark;
+    color: #eee;
+    padding: 15px;
+
+    .quantity{
+        font-size: 36px;
+    }
+
+    .info{
+        padding-left: 10%;
+        border-left: 1px solid rgba(255,255,255,0.2);
+        margin-top: 25px;
+    }
+}
+
+[data-am-shout~="primary"]{
+    background-color: @clr-primary;
+    color: #fff;
+}
+
+[data-am-shout~="secondary"]{
+    background-color: @clr-secondary;
+    color: #fff;
+}
+
+[data-am-shout~="icon-left"]{
+    .icon{
+        font-size: 35px;
+        text-align: center;
+        padding: 35px 0 25px 0;
+    }
+}
+
+[data-am-shout~="noun"]{
     
 }
 
 [data-am-shout~="round"]{
+    padding: 0;
     width: 100px;
     height: 100px;
     display: inline-block;
-    background-color: @clr-header-bg-dark;
-    color: #eee;
     border-radius: 50%;
     font-size: 40px;
     line-height: 100px;

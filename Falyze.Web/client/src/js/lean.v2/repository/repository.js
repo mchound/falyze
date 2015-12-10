@@ -60,14 +60,14 @@ function repository(options) {
     this.alias = options.alias;
     this.model = options.model;
 
-    if (!!options.initialize && options.initialize.constructor === Function) {
-        options.initialize.call(this);
-    }
-
     for (var o in options) {
         if (_keywords.indexOf(o) === -1) {
             this[o] = options[o];
         }
+    }
+
+    if (!!options.initialize && options.initialize.constructor === Function) {
+        options.initialize.call(this);
     }
 }
 
@@ -95,13 +95,12 @@ repository.prototype.reactOn = function (action, callback) {
     }
     else {
         if (!!callback) {
-            action.on(callback);
+            action.on(callbac.bind(this));
         }
         if (!!this[localCallbackName]) {
-            action.on(this[localCallbackName]);
+            action.on(this[localCallbackName].bind(this));
         }
     }
-    throw new Error('Unspecified error when tryin got act on action: ' + action.alias + ' for store: ' + this.alias);
 }
 
 repository.prototype.getModel = function () {

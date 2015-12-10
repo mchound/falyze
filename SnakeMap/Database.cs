@@ -89,6 +89,19 @@ namespace SnakeMap
             return entitites;
         }
         
+        public int Count(string sqlCommand)
+        {
+            if (_connection.State == System.Data.ConnectionState.Closed)
+            {
+                _connection.Open();
+            }
+
+            SqlCommand cmd = new SqlCommand(sqlCommand, _connection);
+            var count = (int)cmd.ExecuteScalar();
+            _connection.Close();
+            return count;
+        }
+
         public T Insert<T>(T entity) where T : WritableEntity
         {
             if (_connection.State == System.Data.ConnectionState.Closed)

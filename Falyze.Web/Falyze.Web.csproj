@@ -130,6 +130,7 @@
     <Compile Include="Api\Dashboard\SeasonController.cs" />
     <Compile Include="Api\Dashboard\CountryController.cs" />
     <Compile Include="Api\Dashboard\LeagueController.cs" />
+    <Compile Include="Api\Dashboard\MatchController.cs" />
     <Compile Include="Api\Dashboard\TeamController.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -149,11 +150,13 @@
     <Content Include="client\dist\application.css" />
     <Content Include="client\dist\application.js" />
     <Content Include="client\dist\font\fontello.svg" />
+    <Content Include="client\src\js\actions\actions.js" />
     <Content Include="client\src\js\application.js" />
     <Content Include="client\src\js\components\admin\utils\matchUtils.js" />
     <Content Include="client\src\js\components\admin\utils\msgUtils.js" />
     <Content Include="client\src\js\lean.v2\action.js" />
     <Content Include="client\src\js\lean.v2\component.js" />
+    <Content Include="client\src\js\lean.v2\destroyer.js" />
     <Content Include="client\src\js\lean.v2\injector.js" />
     <Content Include="client\src\js\lean.v2\lean.js" />
     <Content Include="client\src\js\lean.v2\observable.js" />
@@ -163,6 +166,7 @@
     <Content Include="client\src\js\repositories\dashbaord\countryRepo.js" />
     <Content Include="client\src\js\repositories\dashbaord\dashboardRepo.js" />
     <Content Include="client\src\js\repositories\dashbaord\leagueRepo.js" />
+    <Content Include="client\src\js\repositories\dashbaord\teamRepo.js" />
     <Content Include="client\src\js\repositories\dashbaord\seasonRepo.js" />
     <Content Include="client\src\js\repositories\admin\uploadRepo.js" />
     <Content Include="client\src\js\repositories\admin\adminRepo.js" />
@@ -181,6 +185,7 @@
     <Content Include="client\src\js\views\dashboard.js" />
     <Content Include="client\src\js\components\dashboard\preselection\preselection.jsx" />
     <Content Include="client\src\js\components\common\gallery\gallery.jsx" />
+    <Content Include="client\src\js\components\dashboard\matchcount\matchcount.jsx" />
     <None Include="client\src\styles\dashboard-settings.less" />
     <Content Include="client\src\styles\icon-font.less" />
     <Content Include="client\src\styles\foundation\button.less" />

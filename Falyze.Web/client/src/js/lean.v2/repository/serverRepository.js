@@ -176,13 +176,12 @@ serverRepository.prototype.reactOn = function (action, callback) {
     }
     else {
         if (!!callback) {
-            action.on(callback);
+            action.on(callback.bind(this));
         }
         if (!!this[localCallbackName]) {
-            action.on(this[localCallbackName]);
+            action.on(this[localCallbackName].bind(this));
         }
     }
-    throw new Error('Unspecified error when tryin got act on action: ' + action.alias + ' for store: ' + this.alias);
 }
 
 serverRepository.prototype.subscribeTo = function (observable, callback) {

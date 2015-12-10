@@ -25,6 +25,10 @@ function observable(initial) {
         _notify(old, val);
     }
 
+    this.lurkSet = function (val) {
+        _value = val;
+    }
+
     this.observe = function (callback) {
         _listeners[_id++] = callback;
     }
