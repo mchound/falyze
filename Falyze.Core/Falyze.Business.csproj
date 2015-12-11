@@ -41,6 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums.cs" />
+    <Compile Include="Filter\Filter.cs" />
+    <Compile Include="Filter\FilterExtensions.cs" />
+    <Compile Include="Filter\FilterResult.cs" />
+    <Compile Include="Filter\Filters.cs" />
+    <Compile Include="Filter\Side.cs" />
+    <Compile Include="Filter\TeamFilter.cs" />
     <Compile Include="MatchBuilder.cs" />
     <Compile Include="Models.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

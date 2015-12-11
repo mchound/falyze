@@ -1,13 +1,12 @@
 ﻿var React = require('react'),
-    Lean = require('../../../lean/lean'),
 
-    __isNumber = require('lodash/lang/isNumber');
+    _isNumber = require('lodash/lang/isNumber');
 
-module.exports = Lean.createController({
+module.exports = React.createClass({
     getInitialState: function () {
         return {
-            min: '',
-            max: ''
+            min: this.props.defaultMin === undefined ? '' : this.props.defaultMin,
+            max: this.props.defaultMax === undefined ? '' : this.props.defaultMax
         };
     },
     setStateAndNotify: function(state){
@@ -15,12 +14,14 @@ module.exports = Lean.createController({
         current.min = state.min === undefined ? current.min : state.min;
         current.max = state.max === undefined ? current.max : state.max;
         this.setState(current);
-        this.props.onChange(current);
+        if (!!this.props.onChange) {
+            this.props.onChange(current);
+        }
     },
     onChangeMin: function(){
         var sVal = this.refs.min.getDOMNode().value,
             iVal = Number(sVal);
-        if (sVal !== '' && (!__isNumber(iVal) || isNaN(iVal))) {
+        if (sVal !== '' && (!_isNumber(iVal) || isNaN(iVal))) {
             this.setState({ min: this.state.min });
             return;
         }
@@ -33,7 +34,7 @@ module.exports = Lean.createController({
     onChangeMax: function(){
         var sVal = this.refs.max.getDOMNode().value,
             iVal = Number(sVal);
-        if (sVal !== '' && (!__isNumber(iVal) || isNaN(iVal))) {
+        if (sVal !== '' && (!_isNumber(iVal) || isNaN(iVal))) {
             this.setState({ max: this.state.max });
             return;
         }
@@ -106,19 +107,17 @@ module.exports = Lean.createController({
     set: function(min, max){
         this.setState({ min: min, max: max });
     },
-    view: function (model, state, props) {
+    render: function () {
         return (
             <div data-am-range>
                 <div className="col min">
-                    <label className="label-from">From</label>
                     <button onClick={this.onBtnMinChange.bind(this, -1)} className="btn minus"><i className="icon-down-open-big"></i></button>
-                    <input placeholder="min" type="text" className="inp min" value={state.min} onKeyUp={this.onKeyUpMin} onBlur={this.onBlurMin} onChange={this.onChangeMin} ref="min" />
+                    <input placeholder="min" type="text" className="inp min" value={this.state.min} onKeyUp={this.onKeyUpMin} onBlur={this.onBlurMin} onChange={this.onChangeMin} ref="min" />
                     <button onClick={this.onBtnMinChange.bind(this, 1)} className="btn plus"><i className="icon-up-open-big"></i></button>
                 </div>
                 <div className="col max">
-                    <label className="label-to">to</label>
                     <button onClick={this.onBtnMaxChange.bind(this, -1)} className="btn minus"><i className="icon-down-open-big"></i></button>
-                    <input placeholder="max" type="text" className="inp max" value={state.max} onKeyUp={this.onKeyUpMax} onBlur={this.onBlurMax} onChange={this.onChangeMax} ref="max" />
+                    <input placeholder="max" type="text" className="inp max" value={this.state.max} onKeyUp={this.onKeyUpMax} onBlur={this.onBlurMax} onChange={this.onChangeMax} ref="max" />
                     <button onClick={this.onBtnMaxChange.bind(this, 1)} className="btn plus"><i className="icon-up-open-big"></i></button>
                 </div>
             </div>

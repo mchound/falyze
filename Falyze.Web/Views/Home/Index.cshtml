@@ -13,25 +13,29 @@
         <div class="logo-container">
             <h1>F</h1>
         </div>
+        <div data-am-leftnav>
+            <div data-lean-component="filter-selector" data-am-filterselector></div>
+        </div>
     </div>
 
     <div data-am-panel="right">
         <div data-am-topbar></div>
-        
-        <div data-am-workarea>
-            
-            @*<div data-am-splash="">
-                <div data-am-loader>
-                    <div class="loading-bar"></div>
-                    <div class="loading-bar"></div>
-                    <div class="loading-bar"></div>
-                    <div class="loading-bar"></div>
-                </div>
-            </div>*@
 
-            <div class="push-down hidden" id="test">
+        <div data-am-workarea>
+
+            @*<div data-am-splash="">
+                    <div data-am-loader>
+                        <div class="loading-bar"></div>
+                        <div class="loading-bar"></div>
+                        <div class="loading-bar"></div>
+                        <div class="loading-bar"></div>
+                    </div>
+                </div>*@
+
+            <div class="push-down hidden" id="work-panel">
                 <div class="container-fluid ">
-                    <div class="row">
+
+                    <div class="row mb">
                         <div class="col-sm-8">
                             <div data-am-shout="icon-left quantity noun primary">
                                 <div class="row">
@@ -56,7 +60,7 @@
                                 <div class="row">
                                     <div class="col-sm-8">
                                         <div class="icon">
-                                            <i class="icon-gauge"></i>
+                                            <i class="icon-filter"></i>
                                         </div>
                                     </div>
                                     <div class="col-sm-16">
@@ -68,12 +72,69 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-8"><div style="height: 75px; background-color: lightBlue;"></div></div>
+                        <div class="col-sm-8">
+                            <div data-am-shout="icon-left quantity noun tertiary">
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="icon">
+                                            <i class="icon-calendar"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-16">
+                                        <div class="info">
+                                            <p class="quantity">18</p>
+                                            <p class="noun">Upcoming matches</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-sm-16">
+                            <div class="row mb">
+                                <div class="col-sm-12">
+                                    <div data-am-card="light">
+                                        <header class="header">
+                                            <i class="icon-shield"></i> Team 1
+                                        </header>
+                                        <section class="body"></section>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div data-am-card="light">
+                                        <header class="header">
+                                            <i class="icon-shield"></i> Team 2
+                                        </header>
+                                        <section class="body"></section>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-lean-component="filter-list" data-am-filterlist>
+                                
+                            </div>
+
+                            <div data-lean-component="filter-result" data-am-filterresult>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div data-am-card="light">
+                                <header class="header">
+                                    <i class="icon-sliders"></i> Pre selection
+                                </header>
+                                <section class="body">
+                                    <div data-lean-component="preselection-static" data-lean-props='{"layout": "static"}' data-am-preselection="static"></div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
-            <div data-lean-component="preselection" data-am-preselection></div>
+            <div data-lean-component="preselection-slider" data-lean-props='{"layout": "slider"}' data-am-preselection="slider"></div>
 
         </div>
 

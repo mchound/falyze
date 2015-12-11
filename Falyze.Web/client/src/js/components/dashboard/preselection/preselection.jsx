@@ -8,17 +8,41 @@
     CountryRepo = require('../../../repositories/dashbaord/countryRepo'),
     SeasonRepo = require('../../../repositories/dashbaord/seasonRepo'),
     LeagueRepo = require('../../../repositories/dashbaord/leagueRepo'),
+    DashboardRepo = require('../../../repositories/dashbaord/dashboardRepo'),
     
     Actions = require('../../../actions/actions').dashboard;
+
+function _sameAsRepo(country, leagues, seasons) {
+    var repoCountry = DashboardRepo.model.country.get(),
+        repoLeagues = DashboardRepo.model.leagues.get(),
+        repoSeasons = DashboardRepo.model.seasons.get();
+    if (!country || !leagues.length || !seasons.length) {
+        return false;
+    }
+    if (!!repoCountry && repoCountry.id !== country.id) {
+        return false;
+    }
+    if (!!repoLeagues.length) {
+        if (repoLeagues.filter((rl) => !leagues.find((l) => l.id === rl.id)).length > 0) {
+            return false;
+        }
+    }
+    if (!!repoSeasons.length) {
+        if (repoSeasons.filter((rs) => !seasons.find((s) => s.id === rs.id)).length > 0) {
+            return false;
+        }
+    }
+    return true;
+}
 
 module.exports = Lean.createComponent({
     displayName: 'PreSelection',
     repositories: [CountryRepo, SeasonRepo, LeagueRepo],
     getInitialState: function () {
         return {
-            country: null,
-            leagues: [],
-            seasons: []
+            country: DashboardRepo.model.country.get(),
+            leagues: DashboardRepo.model.leagues.get(),
+            seasons: DashboardRepo.model.seasons.get()
         };
     },
     onCountrySelect: function (selected) {
@@ -32,35 +56,26 @@ module.exports = Lean.createComponent({
         this.setState({ country: country, leagues: [], seasons: [] });
     },
     onLeagueSelect: function (selected) {
-        if (!selected) {
-            this.setState({ leagues: [], seasons: [] });
-        }
-        else {
-            this.setState({ leagues: selected, seasons: [] });
-        }
+        var leagues = !selected ? [] : selected.map((s) => this.state.repo.league.find((l) => l.id === s.value));
+        this.setState({ leagues: leagues, seasons: [] });
     },
     onLeaguesConfirm: function () {
-        this.repo.season.server.get('/byLeagues/?leagues=' + this.state.leagues.map((l) => l.value).join(';')).then(function () {
-            this.refs.gallery.goTo(2);
+        this.repo.season.server.get('/byLeagues/?leagues=' + this.state.leagues.map((l) => l.id).join(';')).then(function () {
+            if (this.props.layout === 'slider') {
+                this.refs.gallery.goTo(2);
+            }
         }.bind(this))
         this.forceUpdate();
     },
     onSeasonSelect: function (selected) {
-        if (!selected) {
-            this.setState({ seasons: [] });
-        }
-        else {
-            this.setState({ seasons: selected });
-        }
+        var seasons = !selected ? [] : selected.map((s) => this.state.repo.season.find((s2) => s2.id === s.value));
+        this.setState({ seasons: seasons });
     },
     onSeasonsConfirm: function () {
-        var leagueIds = this.state.leagues.map((l) => l.value),
-            seasonIds = this.state.seasons.map((s) => s.value);
-
         Actions.preselection.dispatch({
             country: this.state.country,
-            leagues: this.state.leagues.map((l) => this.state.repo.league.find((l2) => l.value === l2.id)),
-            seasons: this.state.seasons.map((s) => this.state.repo.season.find((s2) => s.value === s2.id))
+            leagues: this.state.leagues,
+            seasons: this.state.seasons
         });
     },
     goTo: function (slide) {
@@ -68,13 +83,15 @@ module.exports = Lean.createComponent({
     },
     controller: function (state, props) {
         return {
+            view: this.props.layout,
             countries: state.repo.country.map((c) => ({ value: c.id, text: c.name, selected: !!state.country && state.country.id === c.id })),
-            leagues: state.repo.league.filter((l) => !!state.country && l.countryId === state.country.id).map((l) => ({ sortBy: l.level, value: l.id, text: l.name, selected: !!state.leagues.find((l2) => l2.value === l.id) })),
+            leagues: state.repo.league.filter((l) => !!state.country && l.countryId === state.country.id).map((l) => ({ sortBy: l.level, value: l.id, text: l.name, selected: !!state.leagues.find((l2) => l2.id === l.id) })),
             seasonsPending: this.repo.season.isPending(),
-            seasons: state.repo.season.map((s) => ({ value: s.id, text: s.name, sortBy: -s.startYear, selected: state.seasons.find((s2) => s2.value === s.id) }))
+            seasons: state.repo.season.map((s) => ({ value: s.id, text: s.name, sortBy: -s.startYear, selected: state.seasons.find((s2) => s2.id === s.id) })),
+            staticConfirmHidden: _sameAsRepo(state.country, state.leagues, state.seasons)
         };
     },
-    index: function (model, state, props, q) {
+    slider: function (model, state, props, q) {
         return (
             <div className="cell">
                 <div className="content-wrapper">
@@ -131,6 +148,24 @@ module.exports = Lean.createComponent({
                             </div>
                         </div>
                     </Gallery>
+                </div>
+            </div>
+        );
+    },
+    static: function (model, state, props, q) {
+        return (
+            <div>
+                <div className="mb">
+                    <Select items={model.countries} defaultText="Select country" onChange={this.onCountrySelect} />
+                </div>
+                <div className="mb">
+                    <Select items={model.leagues} multiple={true} defaultText="Select leagues" onClose={this.onLeagueSelect} disabled={!state.country} />
+                </div>
+                <div className="mb">
+                    <Select items={model.seasons} multiple={true} defaultText="Select seasons" showCount={true} entityPluralName="seasons" onChange={this.onSeasonSelect} disabled={!state.leagues.length} />
+                </div>
+                <div className={q.hide(model.staticConfirmHidden)}>
+                    <button data-am-button="green" className="btn-continue" disabled={!state.country || !state.leagues.length || !state.seasons.length}><i className="icon-check"></i>Confirm</button>
                 </div>
             </div>
         );

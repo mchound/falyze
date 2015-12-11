@@ -131,6 +131,7 @@
     <Compile Include="Api\Dashboard\CountryController.cs" />
     <Compile Include="Api\Dashboard\LeagueController.cs" />
     <Compile Include="Api\Dashboard\MatchController.cs" />
+    <Compile Include="Api\Dashboard\StatsController.cs" />
     <Compile Include="Api\Dashboard\TeamController.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -164,6 +165,7 @@
     <Content Include="client\src\js\lean.v2\repository\serverRepository.js" />
     <Content Include="client\src\js\lean.v2\viewHelper.js" />
     <Content Include="client\src\js\repositories\dashbaord\countryRepo.js" />
+    <Content Include="client\src\js\repositories\dashbaord\filterRepo.js" />
     <Content Include="client\src\js\repositories\dashbaord\dashboardRepo.js" />
     <Content Include="client\src\js\repositories\dashbaord\leagueRepo.js" />
     <Content Include="client\src\js\repositories\dashbaord\teamRepo.js" />
@@ -186,6 +188,13 @@
     <Content Include="client\src\js\components\dashboard\preselection\preselection.jsx" />
     <Content Include="client\src\js\components\common\gallery\gallery.jsx" />
     <Content Include="client\src\js\components\dashboard\matchcount\matchcount.jsx" />
+    <Content Include="client\src\js\components\dashboard\filterselector\filterselector.jsx" />
+    <Content Include="client\src\js\components\dashboard\filterselector\filteritem.jsx" />
+    <Content Include="client\src\js\components\dashboard\filters\filterlist.jsx" />
+    <Content Include="client\src\js\components\dashboard\filters\position\position.jsx" />
+    <Content Include="client\src\js\components\dashboard\filters\rangefilter\rangefilter.jsx" />
+    <Content Include="client\src\js\components\common\radiocheck\radiocheck.jsx" />
+    <Content Include="client\src\js\components\dashboard\filterresult\filterresult.jsx" />
     <None Include="client\src\styles\dashboard-settings.less" />
     <Content Include="client\src\styles\icon-font.less" />
     <Content Include="client\src\styles\foundation\button.less" />
@@ -259,7 +268,7 @@
     <Content Include="client\src\js\components\common\Select\SelectItem.jsx" />
     <Content Include="client\src\styles\modules\select.less" />
     <Content Include="client\src\styles\import.less" />
-    <Content Include="client\src\js\components\common\Range\Range.jsx" />
+    <Content Include="client\src\js\components\common\range\range.jsx" />
     <Content Include="client\src\styles\modules\range.less" />
     <Content Include="client\src\styles\modules\button.less" />
     <Content Include="client\src\styles\reset\table.less" />
@@ -269,6 +278,12 @@
     <Content Include="client\src\styles\modules\dashboard\preselection\preselection.less" />
     <Content Include="client\src\styles\modules\gallery.less" />
     <Content Include="client\src\styles\modules\shout.less" />
+    <Content Include="client\src\styles\modules\dashboard\card\card.less" />
+    <Content Include="client\src\styles\modules\dashboard\leftnav\leftnav.less" />
+    <Content Include="client\src\styles\modules\dashboard\filterselector\filterselector.less" />
+    <Content Include="client\src\styles\modules\dashboard\filterlist\filterlist.less" />
+    <Content Include="client\src\styles\modules\dashboard\filter\filter.less" />
+    <Content Include="client\src\styles\modules\radiocheck.less" />
     <None Include="client\src\styles\modules\spinner.less" />
     <Content Include="client\src\styles\settings.less" />
     <Content Include="client\src\styles\utilities\grid.less" />

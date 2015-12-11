@@ -9,6 +9,7 @@ module.exports = Lean.createRepository({
         leagues: Lean.observable([]),
         seasons: Lean.observable([]),
         matchCount: Lean.observable(null),
+        filters: Lean.observable([]),
         error: Lean.observable(null)
     },
     initialize: function () {
@@ -23,7 +24,6 @@ module.exports = Lean.createRepository({
                 this.model.leagues.set(payload.leagues);
                 this.model.seasons.set(payload.seasons);
                 this.model.matchCount.set(matchCount);
-                console.log(matchCount);
             }.bind(this),
             function () {
                 this.model.error.set('Something went wrong, please try again');

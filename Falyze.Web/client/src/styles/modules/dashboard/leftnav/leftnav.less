@@ -1,0 +1,41 @@
+﻿[data-am-leftnav]{
+
+    .nav-section:first-child .header{
+        border-top: none;
+        font-weight: 400;
+    }
+
+    .header{
+        color: @clr-left-nav-header-text;
+        border-bottom: 1px solid;
+        border-top: 1px solid;
+        border-color: @clr-left-nav-header-border;
+        padding: @intend-left-nav-header;
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .nav-items{
+        color: #fff;
+    }
+
+    .link{
+        background-color: transparent;
+        border: none;
+        color: inherit;
+        font-size: 14px;
+        font-weight: 400;
+        padding: 10px 20px 10px 25px;
+        cursor: pointer;
+        width: 100%;
+        text-align: left;
+        letter-spacing: 1px;
+        transition: background-color 150ms;
+        outline: none;
+
+        &:hover{
+            background-color: @clr-left-nav-hover;
+        }
+    }
+}

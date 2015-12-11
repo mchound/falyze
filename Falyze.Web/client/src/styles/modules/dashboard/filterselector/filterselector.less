@@ -1,0 +1,23 @@
+﻿[data-am-filterselector]{
+
+    .nav-item{
+        position: relative;
+        overflow: hidden;
+
+        &.selected .checked{
+            left: 85%;
+        }
+
+        &.selected {
+            color: @clr-primary;
+        }
+    }
+
+    .checked{
+        transition: left 150ms;
+        left: 100%;
+        top: 0;
+        position: absolute;
+        line-height: 34px;
+    }
+}

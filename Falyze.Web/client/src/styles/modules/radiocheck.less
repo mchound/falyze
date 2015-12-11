@@ -1,0 +1,30 @@
+﻿[data-am-radiocheck]{
+
+    .options{
+        display: table;
+        width: 100%;
+        border-collapse: collapse;
+
+        &:after{
+            display: table;
+            clear: both;
+            content: " ";
+        }
+    }
+
+    .option{
+        display: table-cell;
+        padding: 10px;
+        text-align: center;
+        border: 1px solid @clr-gray;
+        cursor: pointer;
+        transition: all 150ms;
+
+        &.selected{
+            background-color: @clr-green;
+            cursor: default;
+            color: #fff;
+        }
+    }
+
+}

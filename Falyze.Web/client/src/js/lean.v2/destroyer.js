@@ -1,8 +1,9 @@
 ﻿var React = require('react');
 
 function _fadeOut(node) {
-    node.style.transition = 'opacity 500ms';
+    node.style.transition = 'opacity 500ms, height 1ms 500ms';
     node.style.opacity = 0;
+    node.style.height = 0;
 }
 
 module.exports = function (identifier, type, callback) {
